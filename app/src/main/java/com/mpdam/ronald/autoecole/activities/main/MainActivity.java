@@ -1,17 +1,13 @@
-package com.mpdam.ronald.autoecole;
+package com.mpdam.ronald.autoecole.activities.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.mpdam.ronald.autoecole.models.Instructor;
-import com.mpdam.ronald.autoecole.models.InstructorRepository;
-import com.mpdam.ronald.autoecole.models.UserRepository;
-import com.mpdam.ronald.autoecole.models.User;
-import com.mpdam.ronald.autoecole.models.VoitureRepository;
-import com.strongloop.android.loopback.AccessToken;
+import com.mpdam.ronald.autoecole.R;
+import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
+import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.RestAdapter;
 
 
@@ -26,25 +22,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final RestAdapter adapter = new RestAdapter(getApplicationContext(), "http://autoecoleandroid-cloudbruss.rhcloud.com/api");
-//        final VoitureRepository repository = adapter.createRepository(VoitureRepository.class);
+        final RestAdapter adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         final InstructorRepository userRepo = adapter.createRepository(InstructorRepository.class);
 
-        userRepo.loginUser("instructor@inscructor.com", "instructor",
-
-                new InstructorRepository.LoginCallback() {
-
-                    @Override
-                    public void onSuccess(AccessToken token, Instructor currentUser) {
-                        Log.e("onSuccess",token.getUserId().toString());
-                    }
-
-                    @Override public void onError(Throwable t) {
-                        Log.e("onError",t.toString());
-                    }
-                }
-
-        );
+//        userRepo.createUser("c@c.fr","ccc", new Instructor().setData("userC", "catherine", "", "")).save(new VoidCallback() {
+//            @Override
+//            public void onSuccess() {
+//                Log.e("message", "User created !");// Pencil now exists on the server!
+//            }
+//
+//            @Override
+//            public void onError(Throwable t) {
+//                Log.e("message", t.toString());// save failed, handle the error
+//            }
+//        });
+//
+//        userRepo.loginUser("b@b.fr", "konkak",
+//
+//                new InstructorRepository.LoginCallback() {
+//
+//                    @Override
+//                    public void onSuccess(AccessToken token, Instructor currentUser) {
+//                        Log.e("onSuccess",token.getUserId().toString());
+//                    }
+//
+//                    @Override public void onError(Throwable t) {
+//                        Log.e("onError",t.toString());
+//                    }
+//                }
+//
+//        );
 
 //        loginBtn = (Button) findViewById(R.id.loginButton);
 //        loginUsername = (EditText) findViewById(R.id.loginUsername);
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 //
 //
-//        repository.createObject(ImmutableMap.of("Modele", "Citroën","Marque", "C3")).save(new VoidCallback() {
+//        userRepo.createObject(ImmutableMap.of("Modele", "Citroën","Marque", "C3")).save(new VoidCallback() {
 //            @Override
 //            public void onSuccess() {
 //                Log.e("message", "save !");// Pencil now exists on the server!

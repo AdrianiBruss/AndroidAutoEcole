@@ -1,4 +1,6 @@
-package com.mpdam.ronald.autoecole.models;
+package com.mpdam.ronald.autoecole.modelsRepositories;
+
+import com.mpdam.ronald.autoecole.models.Instructor;
 
 /**
  * Created by Ronald on 28/07/2016.
