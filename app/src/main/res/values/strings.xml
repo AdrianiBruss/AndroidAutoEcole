@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AutoEcole</string>
+    <string name="title_activity_lesson">Map</string>
 </resources>
