@@ -31,9 +31,11 @@ import com.mpdam.ronald.autoecole.utils.Constant;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class LessonActivity extends FragmentActivity implements LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, OnMapReadyCallback {
 
@@ -44,7 +46,8 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     private LocationRequest locationRequest;
 
     private TextView latitudeTextView, longitudeTextView, lastUpdateTimeTextView;
-    private String lastUpdateTime;
+    private Date startTime;
+    private Date endTime;
 
     private Integer permissionInt;
     private LatLng beaubreuilCoord, feytiatCoord, limogesCoord;
@@ -67,8 +70,8 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
         if(locationRequest == null){
             locationRequest = new LocationRequest()
-                    .setInterval(10000)
-                    .setFastestInterval(5000)
+                    .setInterval(500)
+                    .setFastestInterval(100)
                     .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         }
 
@@ -94,9 +97,16 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     }
 
     @Override
+    protected void onPause() {
+        startLocationUpdates();
+//        Log.e("on pause", "on pause");
+        super.onPause();
+    }
+
+    @Override
     public void onConnected(Bundle bundle) {
-        Log.e("on connected", "good");
-        Log.e("googleAPI", googleApiClient.toString());
+//        Log.e("on connected", "good");
+//        Log.e("googleAPI", googleApiClient.toString());
 
         startLocationUpdates();
     }
@@ -112,7 +122,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     }
 
     protected void startLocationUpdates() {
-        Log.e("startLocationUpdates", String.valueOf(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)));
+//        Log.e("startLocationUpdates", String.valueOf(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)));
 
         String locationPermission = Manifest.permission.ACCESS_FINE_LOCATION;
         int hasPermission = ContextCompat.checkSelfPermission(this, locationPermission);
@@ -125,6 +135,8 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         } else {
 
             map.setMyLocationEnabled(true);
+
+            startTime = Calendar.getInstance().getTime();
 
             LocationServices.FusedLocationApi.requestLocationUpdates(
                     googleApiClient, locationRequest, this);
@@ -155,7 +167,6 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
         currentLocation = location;
         allLocations.add(currentLocation);
-        lastUpdateTime = DateFormat.getTimeInstance().format(new Date());
 
 //        Log.e("on location changed", location.toString() + ", " + lastUpdateTime.toString());
 //        updateUI();
@@ -170,9 +181,6 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 //            .width(5)
 //            .color(Color.RED)
 //            .geodesic(false));
-    }
-
-    private void updateUI() {
     }
 
     @Override
@@ -212,6 +220,10 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
         int i = 0;
 
+        Double distance = 0.0;
+
+        endTime = Calendar.getInstance().getTime();
+
         while (i < allLocations.size()) {
 
             Location firstPoint;
@@ -219,9 +231,11 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
             if(i < 1){
                 firstPoint = allLocations.get(0);
+                distance += allLocations.get(0).distanceTo(allLocations.get(1));
             }
             else{
                 firstPoint = allLocations.get(i-1);
+                distance += allLocations.get(i-1).distanceTo(allLocations.get(i));
             }
 
             map.addPolyline((new PolylineOptions())
@@ -232,7 +246,18 @@ public class LessonActivity extends FragmentActivity implements LocationListener
                 .color(Color.RED)
                 .geodesic(false));
 
+            if( i < allLocations.size() - 1 ){
+            }
+
             i++;
         }
+
+        TimeUnit t = TimeUnit.HOURS;
+        Long diff = endTime.getTime() - startTime.getTime();
+        Long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
+        Long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+        Log.e("distance",distance.toString());
+        Log.e("during", String.valueOf(diff) + ", " + String.valueOf(seconds) + ", " + String.valueOf(minutes));
+
     }
 }
