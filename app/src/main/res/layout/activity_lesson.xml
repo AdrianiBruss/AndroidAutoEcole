@@ -23,10 +23,23 @@
         android:padding="30dp"
         android:layout_gravity="bottom|center_horizontal"
         android:gravity="bottom|center_horizontal"
-        android:id="@+id/butttonStopLocation"
+        android:id="@+id/buttonStopLocation"
         android:text="STOP"
         android:textSize="24sp"
         android:onClick="stopLocation"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:padding="30dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="bottom|center_horizontal"
+        android:id="@+id/butttonStartLocation"
+        android:text="START"
+        android:textSize="24sp"
+        android:onClick="startLocation"/>
 
 </FrameLayout>
 
