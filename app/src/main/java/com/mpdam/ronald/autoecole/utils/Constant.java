@@ -8,6 +8,5 @@ package com.mpdam.ronald.autoecole.utils;
 public class Constant {
 
     public static final String URL = "http://autoecoleandroid-cloudbruss.rhcloud.com/api";
-    public static final Integer MY_PERMISSIONS_REQUEST_FINE_LOCATION = 0;
 
 }
