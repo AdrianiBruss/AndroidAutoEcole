@@ -5,6 +5,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.utils.GPSLocation;
 import com.mpdam.ronald.autoecole.utils.GoogleAPI;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,22 +102,26 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     public void startLocation(View view)
     {
         startTime = Calendar.getInstance().getTime();
+
         startLocationUpdates = true;
+
         buttonStartLocation.setVisibility(View.GONE);
         buttonStopLocation.setVisibility(View.VISIBLE);
     }
 
     public void stopLocation(View view)
     {
-        int i = 0;
-        Double distance = 0.0;
-        endTime = Calendar.getInstance().getTime();
         startLocationUpdates = false;
 
-        LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+        buttonStopLocation.setVisibility(View.GONE);
+        buttonStartLocation.setVisibility(View.VISIBLE);
 
         if(allLocations.size() > 1)
         {
+            int i = 0;
+            Double distance = 0.0;
+            endTime = Calendar.getInstance().getTime();
+
             while (i < allLocations.size())
             {
                 Location firstPoint;
@@ -142,25 +148,39 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
                 i++;
             }
+
+            //in milliseconds
+            long diff = endTime.getTime() - startTime.getTime();
+
+            long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+
+            SimpleDateFormat durationFormatter = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+            String duration = diffHours + ":" + diffMinutes + ":" + diffSeconds;
+
+            try {
+
+                Date durationFormat = durationFormatter.parse(duration);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle("YOUR TRIP");
+                builder.setMessage( "Date : " + dateFormatter.format(endTime) + "\n" + "\n" +
+                        "Duration : " + durationFormatter.format(durationFormat) + "\n" + "\n" +
+                        "Distance (en km): " + String.format("%.3g%n", (distance / 1000) ));
+                builder.create().show();
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
         else
         {
             Toast.makeText(this, "You have to move if you want to save itinerary", Toast.LENGTH_SHORT).show();
         }
-
-        long diffInMilis = endTime.getTime() - startTime.getTime();
-        Log.e("diffInMilis", String.valueOf(diffInMilis));
-        long diffInSecond = diffInMilis / 1000;
-        Log.e("diffInSecond", String.valueOf(diffInSecond));
-//        long diffInMinute = diffInMilis / (60 * 1000);
-//        long diffInHour = diffInMilis / (60 * 60 * 1000);
-//        long diffInDays = diffInMilis / (24 * 60 * 60 * 1000);
-
-        Date date = new Date(diffInSecond);
-        SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");
-        String dateText = df2.format(date);
-        System.out.println(dateText);
-
     }
 
     @Override
@@ -171,6 +191,10 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         if(locationUpdates)
         {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        }
+        else
+        {
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
         }
 
     }
