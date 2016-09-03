@@ -36,6 +36,7 @@ import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.RestAdapter;
 import com.strongloop.android.loopback.User;
 import com.strongloop.android.loopback.callbacks.ObjectCallback;
+import com.strongloop.android.loopback.callbacks.VoidCallback;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(Instructor instructor) {
                 if (instructor == null) {
                     Log.e("onSuccess","instructor null");
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
                     Constant.USER = instructor;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
@@ -126,9 +128,12 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(Student student) {
                 if (student == null) {
                     Log.e("onSuccess","student null");
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
                 } else {
                     Constant.USER = student;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
+                    finish();
                 }
             }
 
@@ -136,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
             public void onError(Throwable t) {
                 Log.e("on error", t.toString());
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
         });
     }
-
 
 }
 

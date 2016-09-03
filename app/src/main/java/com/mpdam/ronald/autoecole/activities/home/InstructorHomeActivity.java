@@ -41,6 +41,7 @@ public class InstructorHomeActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
 
             @Override
@@ -52,5 +53,6 @@ public class InstructorHomeActivity extends AppCompatActivity {
 
     public void capturePicture(View view) {
         startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+        finish();
     }
 }

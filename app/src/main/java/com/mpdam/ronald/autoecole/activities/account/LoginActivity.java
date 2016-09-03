@@ -2,8 +2,10 @@ package com.mpdam.ronald.autoecole.activities.account;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,10 +57,10 @@ public class LoginActivity extends AppCompatActivity {
                 String username = loginUsername.getText().toString();
                 String password = loginPassword.getText().toString();
 
-                if (username != "" && password != "") {
-                    instructorConnection(username, password, getApplicationContext());
-                } else {
+                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Please enter your username and your password", Toast.LENGTH_SHORT).show();
+                } else {
+                    instructorConnection(username, password, getApplicationContext());
                 }
 
             }
@@ -90,8 +92,9 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void studentConnection(String id, String pass, final Context context){
 
-        studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
+        studentRepo.createUser("student@email.fr","password",studentRepo.);
 
+        studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
                 Log.e("token", token.toString());
@@ -104,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable t) {
+                Log.e("error",t.toString());
                 Toast.makeText(context, "Sorry but login fails... Please check your username and password", Toast.LENGTH_SHORT).show();
             }
         });

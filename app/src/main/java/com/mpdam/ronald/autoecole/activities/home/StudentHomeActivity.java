@@ -31,6 +31,7 @@ public class StudentHomeActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
 
             @Override
