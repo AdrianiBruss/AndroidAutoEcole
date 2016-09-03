@@ -28,20 +28,85 @@ public class CaptureActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    private ImageView mImageView;
+    private String mCurrentPhotoPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture);
+        this.mImageView = (ImageView) this.findViewById(R.id.imageViewCapture);
 
     }
 
-    private ImageView mImageView;
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        Log.e("message", "createImageFile");
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+//        galleryAddPic();
+        return image;
+    }
+    private void galleryAddPic() {
+        Log.e("message", "sauvegarde de la photo dans la gallerie");
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        // ici il ya l'image qu'on peut récuperer
+        Log.e("contentUri", String.valueOf(contentUri));
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
+    private void dispatchTakePictureIntent() {
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Log.e("error", "Eroor Capturing picture");
+            }
+            if (photoFile != null) {
+
+                Log.e("photoFile", String.valueOf(photoFile));
+
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.mpdam.ronald.autoecole.fileprovider",
+                        photoFile);
+
+                Log.e("photoURI", String.valueOf(photoURI));
+
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+
+        }
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             Log.e("message", "RESULT_OK");
+
+            Log.e("meaggse", String.valueOf(data));
+
 
             if(data != null)
             {
@@ -59,63 +124,11 @@ public class CaptureActivity extends AppCompatActivity {
         }
     }
 
-    String mCurrentPhotoPath;
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        Log.e("message", "createImageFile");
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        galleryAddPic();
-        return image;
-    }
-
-    private void dispatchTakePictureIntent() {
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Log.e("error", "Eroor Capturing picture");
-            }
-            if (photoFile != null) {
-
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.mpdam.ronald.autoecole.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-
-        }
-    }
-
     public void takePicture(View view) {
         dispatchTakePictureIntent();
     }
 
-    private void galleryAddPic() {
-        Log.e("message", "sauvegarde de la photo dans la gallerie");
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        // ici il ya l'image qu'on peut récuperer
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
+
 
 
 }
