@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
+import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
 import com.mpdam.ronald.autoecole.models.Instructor;
 import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
@@ -47,5 +48,9 @@ public class InstructorHomeActivity extends AppCompatActivity {
                 Log.e("on error", "logout");
             }
         });
+    }
+
+    public void capturePicture(View view) {
+        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
     }
 }

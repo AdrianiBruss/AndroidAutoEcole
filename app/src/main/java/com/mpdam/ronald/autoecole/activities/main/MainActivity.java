@@ -98,35 +98,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    protected void findInstructor(){
+    protected void findInstructor() {
 
         instructorRepo.findCurrentUser(new ObjectCallback<Instructor>() {
             @Override
             public void onSuccess(Instructor instructor) {
-				if(instructor == null){
-                    findStudent();
-                }
-                else{
+                if (instructor == null) {
+                    Log.e("onSuccess","instructor null");
+                } else {
                     Constant.USER = instructor;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
             }
 
-    public void capturePicture(View view) {
-        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+            @Override
+            public void onError(Throwable t) {
+                Log.e("on error",t.toString());
+                findStudent();
+            }
+        });
     }
 
-  
-
-    protected void findStudent(){
+    protected void findStudent() {
 
         studentRepo.findCurrentUser(new ObjectCallback<Student>() {
             @Override
             public void onSuccess(Student student) {
-                if(student == null){
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                }
-                else{
+                if (student == null) {
+                    Log.e("onSuccess","student null");
+                } else {
                     Constant.USER = student;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
@@ -134,8 +134,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable t) {
+                Log.e("on error", t.toString());
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     }
 
+
 }
+
