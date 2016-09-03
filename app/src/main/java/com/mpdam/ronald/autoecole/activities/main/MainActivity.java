@@ -1,23 +1,36 @@
 package com.mpdam.ronald.autoecole.activities.main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.mpdam.ronald.autoecole.R;
+import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
 import com.mpdam.ronald.autoecole.activities.googleMap.LessonActivity;
 import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.RestAdapter;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -148,6 +161,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void goToMap(View view) {
         startActivity(new Intent(getApplicationContext(), LessonActivity.class));
+    }
+
+    public void capturePicture(View view) {
+        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
     }
 
     @Override
