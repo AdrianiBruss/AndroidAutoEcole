@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
                 // lancer l'ecran home activity
 
                 // Intent
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, ContactActivity.class);
                 startActivity(intent);
 
 //                finish(); ou noHistory dans le manifest

@@ -28,23 +28,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <!-- splash screen -->
-        <activity
-            android:name=".activities.splashscreen.SplashActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".activities.main.MainActivity">
-        </activity>
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,10 +39,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".activities.googleMap.LessonActivity"
-            android:label="@string/title_activity_lesson" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -78,11 +57,37 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+
+        <!-- Activities -->
+
+
+        <!-- splash screen -->
+        <activity
+            android:name=".activities.splashscreen.SplashActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.main.MainActivity"/>
+
+        <activity
+            android:name=".activities.googleMap.LessonActivity"
+            android:label="@string/title_activity_lesson" />
+
         <activity
             android:name=".activities.capture.CaptureActivity"
             android:label="@string/title_activity_capture"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".activities.splashscreen.ContactActivity"
+            android:theme="@style/SplashTheme"/>
     </application>
 
 </manifest>

@@ -2,4 +2,9 @@
     <string name="app_name">AutoEcole</string>
     <string name="title_activity_lesson">Map</string>
     <string name="title_activity_capture">CaptureActivity</string>
+    <string name="bienvenu">Bienvenu sur l\'application Driving School</string>
+    <string name="presentation">Driving School requiert un identifiant et un mot de passe pour accéder à l\'application. Si vous souhaitez utiliser cette application pour votre auto-école veuillez contacter la société Stormzy Inc. pour plus d\'informations sur le fonctionnement de l\'application et de ses tarifs</string>
+    <string name="contact">06.12.34.45.56</string>
+    <string name="mail">support@stormzy.com</string>
+    <string name="skip">passer cette étape</string>
 </resources>
