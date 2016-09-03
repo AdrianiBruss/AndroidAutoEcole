@@ -1,6 +1,7 @@
 package com.mpdam.ronald.autoecole.modelsRepositories;
 
 import com.mpdam.ronald.autoecole.models.Instructor;
+import com.strongloop.android.loopback.callbacks.ObjectCallback;
 
 /**
  * Created by Ronald on 28/07/2016.

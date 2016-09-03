@@ -6,7 +6,6 @@ import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -63,16 +62,19 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+        // create instance of google api
         if (googleApiClient == null)
         {
             googleApiClient = new GoogleAPI().getGoogleApiClient(this, this, this);
         }
 
+        // create instance of location request to get user locations
         if (locationRequest == null)
         {
             locationRequest = new GoogleAPI().getLocationRequest(500,100,LocationRequest.PRIORITY_HIGH_ACCURACY);
         }
 
+        // create the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -116,6 +118,12 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         buttonStopLocation.setVisibility(View.GONE);
         buttonStartLocation.setVisibility(View.VISIBLE);
 
+        // stop requestLocationUpdates
+        LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+
+        //check if locations array is empty
+            // if true -> draw lines between geopoints, display date, duration and distance of a travel
+            // else show a message
         if(allLocations.size() > 1)
         {
             int i = 0;
@@ -149,7 +157,9 @@ public class LessonActivity extends FragmentActivity implements LocationListener
                 i++;
             }
 
-            //in milliseconds
+            //make date, distance and duration readable for users (format)
+
+            // duration
             long diff = endTime.getTime() - startTime.getTime();
 
             long diffSeconds = diff / 1000 % 60;
@@ -157,8 +167,10 @@ public class LessonActivity extends FragmentActivity implements LocationListener
             long diffHours = diff / (60 * 60 * 1000) % 24;
 
             SimpleDateFormat durationFormatter = new SimpleDateFormat("HH:mm:ss");
-            SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
             String duration = diffHours + ":" + diffMinutes + ":" + diffSeconds;
+
+            // date
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
             try {
 
@@ -169,7 +181,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
                 builder.setTitle("YOUR TRIP");
                 builder.setMessage( "Date : " + dateFormatter.format(endTime) + "\n" + "\n" +
                         "Duration : " + durationFormatter.format(durationFormat) + "\n" + "\n" +
-                        "Distance (en km): " + String.format("%.3g%n", (distance / 1000) ));
+                        "Distance (en km): " + String.format("%.3g%n", (distance / 1000) )); // distance in km with 3 decimal places
                 builder.create().show();
 
             } catch (ParseException e) {
@@ -186,15 +198,13 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     @Override
     public void onConnected(Bundle bundle)
     {
+        // check all permissions (GPS, Manifest) on google api connection -> return boolean
         locationUpdates = new GoogleAPI().checkGPS(this, locationManager, googleApiClient, locationRequest, map);
 
+        // if true, start requestLocationUpdates to get all user locations
         if(locationUpdates)
         {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-        }
-        else
-        {
-            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
         }
 
     }
@@ -214,6 +224,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     @Override
     public void onLocationChanged(Location location)
     {
+        // when user location changes, center map on user and save location in array if button "Start" is pressed
         new GPSLocation().focusOnUser(location, map);
 
         if (startLocationUpdates)
@@ -225,26 +236,9 @@ public class LessonActivity extends FragmentActivity implements LocationListener
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
+        // initialize the map created
         map = googleMap;
-
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-//        beaubreuilCoord = new LatLng(45.879493, 1.292750);
-//        feytiatCoord = new LatLng(45.812902, 1.323138);
-//        limogesCoord = new LatLng(45.830365, 1.254312);
-//
-//        MarkerOptions marker1 = new MarkerOptions().position(beaubreuilCoord).title("Marker 1 : Cora Centre Commercial Beaubreuil");
-//        MarkerOptions marker2 = new MarkerOptions().position(feytiatCoord).title("Marker 2 : Super U Centre Commercial Feytiat");
-//        MarkerOptions marker3 = new MarkerOptions().position(limogesCoord).title("Marker 3 : Tribunal Centre Ville Limoges");
-
-        // Add a marker in Sydney and move the camera
-
-//        map.addMarker(marker1);
-//        map.addMarker(marker2);
-//        map.addMarker(marker3);
-
-//        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
     }
 
 }

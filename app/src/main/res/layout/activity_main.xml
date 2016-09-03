@@ -10,39 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.main.MainActivity">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="email"
-        android:ems="10"
-        android:id="@+id/loginUsername" />
+        android:text="User in the cache ?" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"
-        android:hint="password"
-        android:ems="10"
-        android:id="@+id/loginPassword"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Log in"
-        android:id="@+id/loginButton"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Create a lesson"
-        android:id="@+id/createLessonButton"
-        android:onClick="goToMap"
-        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
