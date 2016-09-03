@@ -70,30 +70,34 @@ public class CaptureActivity extends AppCompatActivity {
     private void dispatchTakePictureIntent() {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Log.e("error", "Eroor Capturing picture");
-            }
-            if (photoFile != null) {
+        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
 
-                Log.e("photoFile", String.valueOf(photoFile));
-
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.mpdam.ronald.autoecole.fileprovider",
-                        photoFile);
-
-                Log.e("photoURI", String.valueOf(photoURI));
-
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-
-        }
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//                Log.e("error", "Eroor Capturing picture");
+//            }
+//            if (photoFile != null) {
+//
+//                Log.e("photoFile", String.valueOf(photoFile));
+//
+//                Uri photoURI = FileProvider.getUriForFile(this,
+//                        "com.mpdam.ronald.autoecole.fileprovider",
+//                        photoFile);
+//
+//                Log.e("photoURI", String.valueOf(photoURI));
+//
+//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//
+//                setResult(RESULT_OK, takePictureIntent);
+//
+//
+//
+//            }
+//        }
     }
 
 
@@ -101,11 +105,13 @@ public class CaptureActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        Log.e("requestCode", String.valueOf(REQUEST_IMAGE_CAPTURE));
+        Log.e("resultCode", String.valueOf(RESULT_OK));
+
+        Log.e("meaggse", String.valueOf(data));
+
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
-            Log.e("message", "RESULT_OK");
-
-            Log.e("meaggse", String.valueOf(data));
 
 
             if(data != null)
@@ -118,17 +124,10 @@ public class CaptureActivity extends AppCompatActivity {
 
                 mImageView.setImageBitmap(imageBitmap);
             }
-            else {
-                Log.e("message", "data is null");
-            }
         }
     }
 
     public void takePicture(View view) {
         dispatchTakePictureIntent();
     }
-
-
-
-
 }
