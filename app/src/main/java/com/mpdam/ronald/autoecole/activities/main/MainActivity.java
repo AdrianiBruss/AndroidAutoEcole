@@ -2,18 +2,31 @@ package com.mpdam.ronald.autoecole.activities.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mpdam.ronald.autoecole.R;
+import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
+import com.mpdam.ronald.autoecole.activities.googleMap.LessonActivity;
+import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
 import com.mpdam.ronald.autoecole.activities.home.StudentHomeActivity;
+import com.mpdam.ronald.autoecole.models.Instructor;
+import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.models.Instructor;
 import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
@@ -24,6 +37,10 @@ import com.strongloop.android.loopback.RestAdapter;
 import com.strongloop.android.loopback.User;
 import com.strongloop.android.loopback.callbacks.ObjectCallback;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
         instructorRepo.findCurrentUser(new ObjectCallback<Instructor>() {
             @Override
             public void onSuccess(Instructor instructor) {
-
-                if(instructor == null){
+				if(instructor == null){
                     findStudent();
                 }
                 else{
@@ -96,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            @Override
-            public void onError(Throwable t) {
-            }
-        });
+    public void capturePicture(View view) {
+        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
     }
+
+  
 
     protected void findStudent(){
 

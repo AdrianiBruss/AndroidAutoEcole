@@ -16,4 +16,13 @@
         android:text="User in the cache ?" />
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Capture a picture"
+        android:id="@+id/capturePicture"
+        android:onClick="capturePicture"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
