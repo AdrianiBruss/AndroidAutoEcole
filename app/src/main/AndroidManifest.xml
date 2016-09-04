@@ -83,7 +83,7 @@
 
         <activity android:name=".activities.home.InstructorHomeActivity" />
         <activity android:name=".activities.home.StudentHomeActivity" />
-        <activity android:name=".activities.account.LoginActivity"></activity>
+        <activity android:name=".activities.account.LoginActivity" android:theme="@style/SplashTheme"/>
     </application>
 
 </manifest>
