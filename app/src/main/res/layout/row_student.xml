@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:background="#B1ADAC">
+    android:background="#80FFFFFF"
+    android:layout_marginBottom="10dp"
+    >
 
     <ImageView
         android:id="@+id/imageViewPhoto"

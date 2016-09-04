@@ -50,15 +50,15 @@ public class InstructorHomeActivity extends AppCompatActivity {
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         instructorRepo = adapter.createRepository(InstructorRepository.class);
 
-//        mListView = (ListView) findViewById(R.id.listViewStudents);
+        mListView = (ListView) findViewById(R.id.listViewStudents);
 
         //android.R.layout.simple_list_item_1 est une vue disponible de base dans le SDK android,
         //Contenant une TextView avec comme identifiant "@android:id/text1"
 
-//        List<Student> students = genererStudents();
-//
-//        StudentAdapter adapter = new StudentAdapter(InstructorHomeActivity.this, students);
-//        mListView.setAdapter(adapter);
+        List<Student> students = genererStudents();
+
+        StudentAdapter adapter = new StudentAdapter(InstructorHomeActivity.this, students);
+        mListView.setAdapter(adapter);
 //        Log.e("current user", Constant.USER.toString());
     }
 
