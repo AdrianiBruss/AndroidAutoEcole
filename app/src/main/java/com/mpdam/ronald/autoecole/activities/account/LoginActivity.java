@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void studentConnection(String id, String pass, final Context context){
 
+//        studentRepo.createUser("student@email.fr","password",studentRepo.)
+
         studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
