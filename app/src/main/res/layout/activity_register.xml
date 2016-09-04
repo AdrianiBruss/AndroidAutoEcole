@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
+    android:background="@drawable/register"
     >
 
 
@@ -25,12 +25,12 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:hint="Email"
+        android:layout_marginTop="20dp"
         android:paddingLeft="30dp"
-        android:layout_marginTop="100dp"
         android:ems="10"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:id="@+id/loginUsername" />
+        android:id="@+id/registerUsername" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,36 +42,61 @@
         android:paddingLeft="30dp"
         android:hint="Password"
         android:ems="10"
-        android:id="@+id/loginPassword"
+        android:id="@+id/registerPassword"
         android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:paddingLeft="30dp"
+        android:hint="Address"
+        android:ems="10"
+        android:id="@+id/registerAddress"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:paddingLeft="30dp"
+        android:hint="Phone"
+        android:ems="10"
+        android:id="@+id/registerPhone"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/takepicture"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:onClick="capturePicture"
+        android:id="@+id/imageViewCapture"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Log in"
+        android:text="Create"
         android:id="@+id/loginButton"
         android:background="@android:color/white"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-
-        android:text="Create a lesson"
-        android:id="@+id/createLessonButton"
-        android:onClick="goToMap"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/register"
-        android:textAlignment="center"
-        android:onClick="goToRegister"
-        android:textColor="@android:color/white"
-        />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="@string/cancel"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--/>-->
 
 </LinearLayout>
