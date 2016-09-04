@@ -7,7 +7,7 @@
     tools:context=".activities.splashscreen.SplashActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#3b3b3b">
+    android:background="@drawable/background_students">
 
     <TextView
         android:layout_width="wrap_content"
