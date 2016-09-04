@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
@@ -27,6 +28,10 @@ public class StudentHomeActivity extends AppCompatActivity {
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         studentRepo = adapter.createRepository(StudentRepository.class);
 
+//        Log.e("current user", Constant.USER.toString());
+    }
+
+    public void logout(View view) {
         studentRepo.logout(new VoidCallback() {
             @Override
             public void onSuccess() {
@@ -39,7 +44,5 @@ public class StudentHomeActivity extends AppCompatActivity {
                 Log.e("on error", "logout");
             }
         });
-
-//        Log.e("current user", Constant.USER.toString());
     }
 }

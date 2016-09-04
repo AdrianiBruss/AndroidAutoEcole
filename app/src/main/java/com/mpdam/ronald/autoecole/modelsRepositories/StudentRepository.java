@@ -12,7 +12,7 @@ public class StudentRepository extends com.strongloop.android.loopback.UserRepos
     }
 
     public StudentRepository() {
-        super("instructor", Student.class);
+        super("student", Student.class);
     }
 
 }

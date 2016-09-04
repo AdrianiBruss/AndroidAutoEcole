@@ -22,7 +22,9 @@ import com.mpdam.ronald.autoecole.modelsRepositories.StudentRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.RestAdapter;
+import com.strongloop.android.loopback.User;
 import com.strongloop.android.loopback.callbacks.ObjectCallback;
+import com.strongloop.android.loopback.callbacks.VoidCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -91,8 +93,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     protected void studentConnection(String id, String pass, final Context context){
-
-        studentRepo.createUser("student@email.fr","password",studentRepo.);
 
         studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
             @Override

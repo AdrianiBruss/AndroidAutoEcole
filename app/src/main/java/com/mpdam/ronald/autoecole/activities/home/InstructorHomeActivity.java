@@ -36,7 +36,7 @@ public class InstructorHomeActivity extends AppCompatActivity {
 //        Log.e("current user", Constant.USER.toString());
     }
 
-    public void Logout(View view) {
+    public void logout(View view) {
         instructorRepo.logout(new VoidCallback() {
             @Override
             public void onSuccess() {
