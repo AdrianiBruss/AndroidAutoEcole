@@ -71,6 +71,20 @@ public class MainActivity extends AppCompatActivity {
         //get current user from cache
         findInstructor();
 
+//        User newStudent = studentRepo.createUser( "student1@mail.fr","password",
+//                new Student().setData( "student1", "", "student1", "","", ""));
+//
+//        newStudent.save(new VoidCallback() {
+//            @Override
+//            public void onSuccess() {
+//                Log.e("message", "User created !");
+//            }
+//
+//            @Override
+//            public void onError(Throwable t) {
+//                Log.e("message", t.toString());
+//            }
+//        });
 
 //        instructorRepo.createObject(ImmutableMap.of("Modele", "Citroën","Marque", "C3")).save(new VoidCallback() {
 //            @Override
@@ -115,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable t) {
-                Log.e("on error",t.toString());
+                Log.e("on error instructor",t.toString());
                 findStudent();
             }
         });
@@ -139,12 +153,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable t) {
-                Log.e("on error", t.toString());
+                Log.e("on error student", t.toString());
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }
         });
     }
 
+    public void logout(View view) {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
 }
 
