@@ -51,8 +51,8 @@ public class InstructorHomeActivity extends AppCompatActivity {
         });
     }
 
-    public void capturePicture(View view) {
-        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
-        finish();
-    }
+//    public void capturePicture(View view) {
+//        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+//        finish();
+//    }
 }

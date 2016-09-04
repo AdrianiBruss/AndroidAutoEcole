@@ -7,4 +7,6 @@
     <string name="contact">06.12.34.45.56</string>
     <string name="mail">support@stormzy.com</string>
     <string name="skip">passer cette étape</string>
+    <string name="register">create your account</string>
+    <string name="cancel">Cancel</string>
 </resources>
