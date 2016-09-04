@@ -27,7 +27,7 @@ public class SideMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_side_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -70,21 +70,17 @@ public class SideMenuActivity extends AppCompatActivity
 //        return super.onOptionsItemSelected(item);
 //    }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        Log.e("getItemId", String.valueOf(id));
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_register) {
-
-            Log.e("message", "goToregister");
             startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
 
         } else if (id == R.id.nav_manage) {
