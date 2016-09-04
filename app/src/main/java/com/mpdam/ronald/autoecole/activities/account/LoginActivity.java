@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AccessToken token, Instructor currentInstructor) {
                 Log.e("token", token.toString());
-                Constant.USER = currentInstructor;
+                Constant.INSTRUCTOR = currentInstructor;
 
                 Intent intent = new Intent(context, InstructorHomeActivity.class);
                 startActivity(intent);
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
                 Log.e("token", token.toString());
-                Constant.USER = currentStudent;
+                Constant.STUDENT = currentStudent;
 
                 Intent intent = new Intent(context, StudentHomeActivity.class);
                 startActivity(intent);

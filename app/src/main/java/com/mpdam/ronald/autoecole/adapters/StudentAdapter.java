@@ -46,10 +46,10 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         Student student = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.firstname.setText(student.firstname);
-        viewHolder.lastname.setText(student.lastname);
-        viewHolder.phone.setText(student.phone);
-        viewHolder.address.setText(student.address);
+        viewHolder.firstname.setText(student.get("firstname").toString());
+        viewHolder.lastname.setText(student.get("lastname").toString());
+        viewHolder.phone.setText(student.get("phone").toString());
+        viewHolder.address.setText(student.get("address").toString());
 //        viewHolder.picture.setImageDrawable(new ColorDrawable(student.getColor()));
 
         return convertView;

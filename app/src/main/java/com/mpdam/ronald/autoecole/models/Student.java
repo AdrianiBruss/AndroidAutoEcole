@@ -20,16 +20,6 @@ public class Student extends com.strongloop.android.loopback.User {
     public String picture;
     public Lesson lessons;
 
-    public Student(String login, String add, String firstn, String lastn, String tel, String pic) {
-        this.username = login;
-        this.address = add;
-        this.nbHours = 0;
-        this.firstname = firstn;
-        this.lastname = lastn;
-        this.phone = tel;
-        this.picture = pic;
-    }
-
     public Map<String, ? extends Object> setData(String login, String add, String firstn, String lastn, String tel, String pic) {
         HashMap ht = new HashMap();
 
