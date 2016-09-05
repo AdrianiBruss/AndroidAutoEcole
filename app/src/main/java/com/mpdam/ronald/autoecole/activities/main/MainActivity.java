@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 //
         //get current user from cache
         findInstructor();
-
+//
 //        User newStudent = studentRepo.createUser( "student1@mail.fr","password",
 //                new Student().setData( "student1", "", "student1", "","", ""));
 //

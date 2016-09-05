@@ -24,13 +24,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="Username"
         android:layout_marginTop="20dp"
         android:paddingLeft="30dp"
         android:ems="10"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:id="@+id/registerUsername" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"
+        android:ems="10"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:id="@+id/registerEmail" />
 
     <EditText
         android:layout_width="match_parent"
@@ -86,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Create"
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         android:background="@android:color/white"
         android:layout_gravity="center_horizontal" />
 
