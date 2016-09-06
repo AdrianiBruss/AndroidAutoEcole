@@ -17,6 +17,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.mpdam.ronald.autoecole.activities.home.StudentActivity;
 
 
 /**
@@ -39,7 +40,6 @@ public class GPSLocation {
         }
         else
         {
-            Toast.makeText(activity, "We already have persmission", Toast.LENGTH_SHORT).show();
             //display current location on map
             map.setMyLocationEnabled(true);
             return true;
@@ -51,20 +51,20 @@ public class GPSLocation {
         // check if GPS is activated, if not, start mobile settings activity
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setCancelable(false);
-        builder.setTitle("Enable GPS");
-        builder.setMessage("Please enable GPS");
+        builder.setTitle("Activer votre GPS");
+        builder.setMessage("Activer votre GPS s'il vous plaît");
         builder.setInverseBackgroundForced(true);
-        builder.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Activer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 ctx.startActivity(
                         new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
         });
-        builder.setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Ignorer", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 ctx.startActivity(
-                        new Intent(ctx, activityClass));
+                        new Intent(ctx, StudentActivity.class));
             }
         });
         AlertDialog alert = builder.create();

@@ -202,7 +202,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         }
         else
         {
-            Toast.makeText(this, "You have to move if you want to save itinerary", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Aucun itinéraire enregistré", Toast.LENGTH_SHORT).show();
         }
     }
 
