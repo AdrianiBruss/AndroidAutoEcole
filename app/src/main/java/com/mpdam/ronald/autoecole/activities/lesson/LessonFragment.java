@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -36,7 +37,7 @@ public class LessonFragment extends Fragment {
 
     private List<Lesson> lessons;
 
-    private ListView listView;
+    private GridView listView;
 
     public static LessonFragment newInstance(ArrayList lessons) {
         LessonFragment fragment = new LessonFragment();
@@ -62,7 +63,7 @@ public class LessonFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_lesson, container, false);
-        listView = (ListView) view.findViewById(R.id.listViewLessons);
+        listView = (GridView) view.findViewById(R.id.listViewLessons);
 
         LessonAdapter ladapter = new LessonAdapter(getContext(), lessons);
         listView.setAdapter(ladapter);

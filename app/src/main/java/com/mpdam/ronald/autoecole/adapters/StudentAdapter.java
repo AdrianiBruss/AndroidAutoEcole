@@ -54,7 +54,6 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.lastname.setText(student.get("lastname").toString());
         viewHolder.phone.setText(student.get("phone").toString());
         viewHolder.address.setText(student.get("address").toString());
-//        viewHolder.picture.setImageDrawable();
 
         if ( student.get("picture") != null  ) {
 //            Log.e("picture", student.get("picture").toString());

@@ -47,10 +47,9 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
         Lesson lesson = getItem(position);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String date = formatter.format(lesson.date);
-        Log.e("date", date);
 
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.title.setText("Lesson");
+        viewHolder.title.setText("Cours");
         viewHolder.name.setText(lesson.name);
         viewHolder.date.setText(date);
 
