@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mpdam.ronald.autoecole.R;
-import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.menu.SideMenuActivity;
 import com.mpdam.ronald.autoecole.adapters.StudentAdapter;
 import com.mpdam.ronald.autoecole.models.Student;
@@ -65,7 +64,6 @@ public class InstructorHomeActivity extends SideMenuActivity {
         });
 
     }
-
     private Bitmap base64ToBitmap(String b64) {
         byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);

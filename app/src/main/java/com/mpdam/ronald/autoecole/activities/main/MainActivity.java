@@ -44,9 +44,14 @@ public class MainActivity extends AppCompatActivity {
 //
         //get current user from cache
         findInstructor();
+//
+//        User newStudent = studentRepo.createUser( "student1@mail.fr","password",
+//                new Student().setData( "student1", "", "student1", "","", ""));
+
 
 //        Instructor newInstructor = instructorRepo.createUser( "instructor1@mail.fr","password",
 //                new Instructor().setData( "Paul", "Samaré","", ""));
+
 //
 //        newInstructor.save(new VoidCallback() {
 //            @Override

@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/register"
+    android:background="@drawable/background"
+    android:id="@+id/registerLayout"
     >
 
 
@@ -17,14 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/splashscreen_logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="Username"
         android:layout_marginTop="20dp"
         android:paddingLeft="30dp"
         android:ems="10"
@@ -35,11 +36,23 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
         android:layout_marginTop="10dp"
+        android:paddingLeft="30dp"
+        android:ems="10"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:id="@+id/registerEmail" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:paddingLeft="30dp"
+        android:layout_marginTop="10dp"
         android:hint="Password"
         android:ems="10"
         android:id="@+id/registerPassword"
@@ -48,11 +61,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:inputType="text"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:paddingLeft="30dp"
+        android:layout_marginTop="10dp"
         android:hint="Address"
         android:ems="10"
         android:id="@+id/registerAddress"
@@ -61,11 +74,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:inputType="number"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:paddingLeft="30dp"
+        android:layout_marginTop="10dp"
         android:hint="Phone"
         android:ems="10"
         android:id="@+id/registerPhone"
@@ -77,8 +90,8 @@
         android:background="@drawable/takepicture"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:id="@+id/imageCaptured"
         android:onClick="capturePicture"
-        android:id="@+id/imageViewCapture"
         />
 
     <Button
@@ -86,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Create"
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         android:background="@android:color/white"
         android:layout_gravity="center_horizontal" />
 
