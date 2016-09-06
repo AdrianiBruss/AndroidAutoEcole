@@ -2,7 +2,7 @@ package com.mpdam.ronald.autoecole.activities.account;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.text.TextUtilsCompat;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,9 +22,6 @@ import com.mpdam.ronald.autoecole.modelsRepositories.StudentRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.RestAdapter;
-import com.strongloop.android.loopback.User;
-import com.strongloop.android.loopback.callbacks.ObjectCallback;
-import com.strongloop.android.loopback.callbacks.VoidCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     private StudentRepository studentRepo;
 
     private RestAdapter adapter;
+
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     private Button loginBtn;
     private EditText loginUsername, loginPassword;
@@ -41,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        preferences = getSharedPreferences("AUTHENTICATION_DATA", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         instructorRepo = adapter.createRepository(InstructorRepository.class);
@@ -76,8 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(AccessToken token, Instructor currentInstructor) {
-                Log.e("token", token.toString());
-                Constant.INSTRUCTOR = currentInstructor;
+                editor.putString("Authentication_Token", token.getId().toString());
+                editor.apply();
 
                 Intent intent = new Intent(context, InstructorHomeActivity.class);
                 startActivity(intent);
@@ -97,8 +100,9 @@ public class LoginActivity extends AppCompatActivity {
         studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
-                Log.e("token", token.toString());
                 Constant.STUDENT = currentStudent;
+                editor.putString("Authentication_Token", token.getId().toString());
+                editor.apply();
 
                 Intent intent = new Intent(context, StudentHomeActivity.class);
                 startActivity(intent);
@@ -113,8 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     public void goToRegister(View view) {
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));

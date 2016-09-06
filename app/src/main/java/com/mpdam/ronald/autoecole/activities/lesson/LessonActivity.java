@@ -1,4 +1,4 @@
-package com.mpdam.ronald.autoecole.activities.googleMap;
+package com.mpdam.ronald.autoecole.activities.lesson;
 
 import android.content.Intent;
 import android.graphics.Color;

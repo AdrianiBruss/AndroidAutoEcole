@@ -26,7 +26,12 @@ dependencies {
     compile 'com.strongloop:loopback-sdk-android:1.5.+'
     compile 'com.google.android.gms:play-services:9.4.0'
     compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile project(":volley")
 }
+
+
 
 
 
