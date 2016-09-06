@@ -46,8 +46,6 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         //getItem(position) va récupérer l'item [position] de la List<Student> students
         Student student = getItem(position);
 
-        Log.e("picture", student.get("picture").toString());
-
         //il ne reste plus qu'à remplir notre vue
         viewHolder.firstname.setText(student.get("firstname").toString());
         viewHolder.lastname.setText(student.get("lastname").toString());

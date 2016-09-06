@@ -1,15 +1,33 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_students"
     tools:context=".activities.lesson.LessonFragment"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:gravity="center|fill_horizontal|center_vertical|center_horizontal|fill|bottom|left|right|fill_vertical|top">
 
-    <ListView
+    <GridView
         android:id="@+id/listViewLessons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="524dp"
+        android:columnWidth="250dp"
+        android:numColumns="2"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
 
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonCreateLesson"
+        android:background="#FFFFFF"
+        android:padding="20dp"
+        android:text="Créer un cours"
+        android:layout_marginBottom="60dp"
+        android:onClick="goToMap"
+        android:layout_gravity="bottom" />
+
+</FrameLayout>

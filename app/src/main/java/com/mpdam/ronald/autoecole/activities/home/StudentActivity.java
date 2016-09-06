@@ -1,6 +1,7 @@
 package com.mpdam.ronald.autoecole.activities.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 
 import com.android.volley.Request;
@@ -23,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.ProfileFragment;
+import com.mpdam.ronald.autoecole.activities.lesson.LessonActivity;
 import com.mpdam.ronald.autoecole.activities.lesson.LessonFragment;
 import com.mpdam.ronald.autoecole.adapters.LessonAdapter;
 import com.mpdam.ronald.autoecole.models.Lesson;
@@ -98,7 +101,6 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ProfileFragment().newInstance(Constant.STUDENT), "");
         adapter.addFragment(new LessonFragment().newInstance(lessons), "");
@@ -134,10 +136,10 @@ public class StudentActivity extends AppCompatActivity {
             String title=" ";
             switch (position){
                 case 0:
-                    title="Profile";
+                    title="Profil";
                     break;
                 case 1:
-                    title="Lessons";
+                    title="Cours";
                     break;
             }
 
@@ -145,4 +147,9 @@ public class StudentActivity extends AppCompatActivity {
         }
     }
 
+    public void goToMap(View view) {
+        Intent intent = new Intent(this, LessonActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
