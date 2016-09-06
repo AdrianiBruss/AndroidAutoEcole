@@ -1,32 +1,36 @@
 package com.mpdam.ronald.autoecole.activities.home;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
 import com.mpdam.ronald.autoecole.activities.googleMap.LessonActivity;
 import com.mpdam.ronald.autoecole.activities.menu.SideMenuActivity;
-import com.mpdam.ronald.autoecole.models.Instructor;
+import com.mpdam.ronald.autoecole.adapters.StudentAdapter;
 import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
 import com.mpdam.ronald.autoecole.modelsRepositories.StudentRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.RestAdapter;
-import com.strongloop.android.loopback.callbacks.ObjectCallback;
+import com.strongloop.android.loopback.callbacks.ListCallback;
 import com.strongloop.android.loopback.callbacks.VoidCallback;
+
+import java.util.List;
+import java.util.ListIterator;
 
 public class InstructorHomeActivity extends SideMenuActivity {
 
+    private StudentRepository studentRepo;
     private InstructorRepository instructorRepo;
-
     private RestAdapter adapter;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +41,25 @@ public class InstructorHomeActivity extends SideMenuActivity {
         inflater.inflate(R.layout.activity_instructor_home, (ViewGroup) findViewById(R.id.container));
 
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
-        instructorRepo = adapter.createRepository(InstructorRepository.class);
+        studentRepo = adapter.createRepository(StudentRepository.class);
+//        instructorRepo = adapter.createRepository(InstructorRepository.class);
 
+        mListView = (ListView) findViewById(R.id.listViewStudents);
 
-//        Log.e("current user", Constant.USER.toString());
+//        Instructor user = Constant.INSTRUCTOR;
+        studentRepo.findAll(new ListCallback<Student>() {
+            @Override
+            public void onSuccess(List<Student> all) {
+                StudentAdapter adapter = new StudentAdapter(InstructorHomeActivity.this, all);
+                mListView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.e("onError findAll", t.toString());
+            }
+        });
+
     }
 
     public void logout(View view) {
@@ -56,10 +75,5 @@ public class InstructorHomeActivity extends SideMenuActivity {
                 Log.e("on error", "logout");
             }
         });
-    }
-
-    public void goToLesson(View view) {
-        startActivity(new Intent(getApplicationContext(), LessonActivity.class));
-        finish();
     }
 }

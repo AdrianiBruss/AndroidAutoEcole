@@ -1,6 +1,8 @@
 package com.mpdam.ronald.autoecole.utils;
 
 
+import com.mpdam.ronald.autoecole.models.Instructor;
+import com.mpdam.ronald.autoecole.models.Student;
 import com.strongloop.android.loopback.User;
 
 /**
@@ -9,6 +11,7 @@ import com.strongloop.android.loopback.User;
 public class Constant {
 
     public static final String URL = "http://autoecoleandroid-cloudbruss.rhcloud.com/api";
-    public static User USER = null;
+    public static Instructor INSTRUCTOR = null;
+    public static Student STUDENT = null;
 
 }

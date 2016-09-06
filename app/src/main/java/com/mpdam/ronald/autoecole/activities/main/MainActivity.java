@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("onSuccess","instructor null");
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
-                    Constant.USER = instructor;
+                    Constant.INSTRUCTOR = instructor;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
             }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 } else {
-                    Constant.USER = student;
+                    Constant.STUDENT = student;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                     finish();
                 }
