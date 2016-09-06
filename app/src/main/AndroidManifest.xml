@@ -13,6 +13,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -26,7 +28,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -48,6 +51,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+
+
         <!-- Activities -->
 
 
@@ -63,7 +68,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.main.MainActivity" />
+        <activity android:name=".activities.main.MainActivity" android:theme="@style/SplashTheme"/>
         <activity
             android:name=".activities.googleMap.LessonActivity"
             android:label="@string/title_activity_lesson" />
@@ -85,7 +90,7 @@
         <activity
             android:name=".activities.menu.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
