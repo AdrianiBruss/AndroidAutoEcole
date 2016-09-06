@@ -1,11 +1,15 @@
 package com.mpdam.ronald.autoecole.activities.account;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +66,16 @@ public class ProfileFragment extends Fragment {
 
         if(student != null)
         {
-            linearLayoutProfile.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.studentpicture, null));
+
+            if ( student.get("picture") != null  ) {
+
+                Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
+                BitmapDrawable background = new BitmapDrawable(imageBitmap);
+                linearLayoutProfile.setBackgroundDrawable(background);
+//
+//              linearLayoutProfile.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.studentpicture, null));
+            }
+
 
             textViewFirstname.setText(student.get("firstname").toString());
             textViewLastname.setText(student.get("lastname").toString());
@@ -74,6 +87,13 @@ public class ProfileFragment extends Fragment {
         }
 
         return view;
+    }
+
+
+
+    private Bitmap base64ToBitmap(String b64) {
+        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 
 

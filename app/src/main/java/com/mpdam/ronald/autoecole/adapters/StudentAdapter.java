@@ -1,7 +1,11 @@
 package com.mpdam.ronald.autoecole.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +42,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             viewHolder.lastname = (TextView) convertView.findViewById(R.id.textViewLastname);
             viewHolder.phone = (TextView) convertView.findViewById(R.id.textViewPhone);
             viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddress);
-//            viewHolder.photo = (ImageView) convertView.findViewById(R.id.avatar);
+            viewHolder.picture = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
             convertView.setTag(viewHolder);
         }
 
@@ -50,7 +54,13 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.lastname.setText(student.get("lastname").toString());
         viewHolder.phone.setText(student.get("phone").toString());
         viewHolder.address.setText(student.get("address").toString());
-//        viewHolder.picture.setImageDrawable(new ColorDrawable(student.getColor()));
+//        viewHolder.picture.setImageDrawable();
+
+        if ( student.get("picture") != null  ) {
+//            Log.e("picture", student.get("picture").toString());
+            Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
+            viewHolder.picture.setImageBitmap(imageBitmap);
+        }
 
         return convertView;
     }
@@ -60,7 +70,12 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         public TextView lastname;
         public TextView phone;
         public TextView address;
-//        public ImageView picture;
+        public ImageView picture;
+    }
+
+    private Bitmap base64ToBitmap(String b64) {
+        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 
 }
