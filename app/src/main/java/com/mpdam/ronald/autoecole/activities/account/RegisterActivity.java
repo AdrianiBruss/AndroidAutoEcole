@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerPassword    = (EditText) findViewById(R.id.registerPassword);
         registerAddress     = (EditText) findViewById(R.id.registerAddress);
         registerPhone       = (EditText) findViewById(R.id.registerPhone);
-        
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

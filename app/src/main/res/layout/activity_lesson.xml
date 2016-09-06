@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     >
 
     <fragment
@@ -16,30 +17,43 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp"
-        android:padding="30dp"
-        android:layout_gravity="bottom|center_horizontal"
+        android:padding="20dp"
+        android:background="#3B3B3B"
+        android:layout_gravity="center_horizontal|bottom"
         android:gravity="bottom|center_horizontal"
         android:id="@+id/buttonStopLocation"
-        android:text="STOP"
-        android:textSize="24sp"
+        android:text="STOP THE LESSON"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:onClick="stopLocation"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp"
-        android:padding="30dp"
-        android:layout_gravity="bottom|center_horizontal"
+        android:padding="20dp"
+        android:layout_gravity="center_horizontal|bottom"
         android:gravity="bottom|center_horizontal"
         android:id="@+id/butttonStartLocation"
-        android:text="START"
-        android:textSize="24sp"
+        android:text="START THE LESSON"
+        android:background="#3B3B3B"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:onClick="startLocation"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="bottom|center_horizontal"
+        android:id="@+id/backToLessons"
+        android:text="BACK TO LESSONS"
+        android:background="#3B3B3B"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:onClick="backToLessons"/>
 
 </FrameLayout>
 

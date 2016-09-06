@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
+import com.mpdam.ronald.autoecole.activities.googleMap.LessonActivity;
 import com.mpdam.ronald.autoecole.activities.menu.SideMenuActivity;
 import com.mpdam.ronald.autoecole.models.Instructor;
 import com.mpdam.ronald.autoecole.models.Student;
@@ -57,8 +58,8 @@ public class InstructorHomeActivity extends SideMenuActivity {
         });
     }
 
-//    public void capturePicture(View view) {
-//        startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
-//        finish();
-//    }
+    public void goToLesson(View view) {
+        startActivity(new Intent(getApplicationContext(), LessonActivity.class));
+        finish();
+    }
 }

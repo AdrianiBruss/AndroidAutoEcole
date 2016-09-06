@@ -1,5 +1,6 @@
 package com.mpdam.ronald.autoecole.activities.googleMap;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
@@ -21,6 +22,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.mpdam.ronald.autoecole.R;
+import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
+import com.mpdam.ronald.autoecole.models.Instructor;
+import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.utils.GPSLocation;
 import com.mpdam.ronald.autoecole.utils.GoogleAPI;
 
@@ -48,6 +52,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
     private Button buttonStartLocation;
     private Button buttonStopLocation;
+    private Button backToLessons;
 
 
     @Override
@@ -57,8 +62,11 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
-        buttonStartLocation = (Button) findViewById(R.id.butttonStartLocation);
-        buttonStopLocation = (Button) findViewById(R.id.buttonStopLocation);
+        buttonStartLocation     = (Button) findViewById(R.id.butttonStartLocation);
+        buttonStopLocation      = (Button) findViewById(R.id.buttonStopLocation);
+        backToLessons           = (Button) findViewById(R.id.backToLessons);
+
+        backToLessons.setVisibility(View.GONE);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -109,6 +117,8 @@ public class LessonActivity extends FragmentActivity implements LocationListener
 
         buttonStartLocation.setVisibility(View.GONE);
         buttonStopLocation.setVisibility(View.VISIBLE);
+        backToLessons.setVisibility(View.GONE);
+
     }
 
     public void stopLocation(View view)
@@ -116,7 +126,8 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         startLocationUpdates = false;
 
         buttonStopLocation.setVisibility(View.GONE);
-        buttonStartLocation.setVisibility(View.VISIBLE);
+        buttonStartLocation.setVisibility(View.GONE);
+        backToLessons.setVisibility(View.VISIBLE);
 
         // stop requestLocationUpdates
         LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
@@ -239,6 +250,10 @@ public class LessonActivity extends FragmentActivity implements LocationListener
         // initialize the map created
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+    }
+
+    public void backToLessons(View view) {
+        startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
     }
 
 }
