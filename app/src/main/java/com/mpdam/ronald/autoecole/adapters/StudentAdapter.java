@@ -1,7 +1,10 @@
 package com.mpdam.ronald.autoecole.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +55,12 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.phone.setText(student.get("phone").toString());
         viewHolder.address.setText(student.get("address").toString());
 
+        if ( student.get("picture") != null  ) {
+//            Log.e("picture", student.get("picture").toString());
+            Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
+            viewHolder.picture.setImageBitmap(imageBitmap);
+        }
+
         return convertView;
     }
 
@@ -61,6 +70,11 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         public TextView phone;
         public TextView address;
         public ImageView picture;
+    }
+
+    private Bitmap base64ToBitmap(String b64) {
+        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 
 }

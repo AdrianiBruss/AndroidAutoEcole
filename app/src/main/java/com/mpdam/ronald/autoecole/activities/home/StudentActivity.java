@@ -64,11 +64,12 @@ public class StudentActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("AUTHENTICATION_DATA", Context.MODE_PRIVATE);
         String token = preferences.getString("Authentication_Token","");
+        Log.e("token", token);
         String userId = Constant.STUDENT.getId().toString();
 
         queue = Volley.newRequestQueue(this);
 
-        String url = Constant.URL + "/Students/" + userId + "/lessons?access_token=" + token;
+        String url = Constant.URL + "Students/" + userId + "/lessons?access_token=" + token;
 
         JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>()
