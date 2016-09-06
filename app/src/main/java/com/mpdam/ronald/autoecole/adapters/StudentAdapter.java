@@ -2,6 +2,7 @@ package com.mpdam.ronald.autoecole.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,19 +39,20 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             viewHolder.lastname = (TextView) convertView.findViewById(R.id.textViewLastname);
             viewHolder.phone = (TextView) convertView.findViewById(R.id.textViewPhone);
             viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddress);
-//            viewHolder.photo = (ImageView) convertView.findViewById(R.id.avatar);
+            viewHolder.picture = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
             convertView.setTag(viewHolder);
         }
 
         //getItem(position) va récupérer l'item [position] de la List<Student> students
         Student student = getItem(position);
 
+        Log.e("picture", student.get("picture").toString());
+
         //il ne reste plus qu'à remplir notre vue
         viewHolder.firstname.setText(student.get("firstname").toString());
         viewHolder.lastname.setText(student.get("lastname").toString());
         viewHolder.phone.setText(student.get("phone").toString());
         viewHolder.address.setText(student.get("address").toString());
-//        viewHolder.picture.setImageDrawable(new ColorDrawable(student.getColor()));
 
         return convertView;
     }
@@ -60,7 +62,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         public TextView lastname;
         public TextView phone;
         public TextView address;
-//        public ImageView picture;
+        public ImageView picture;
     }
 
 }

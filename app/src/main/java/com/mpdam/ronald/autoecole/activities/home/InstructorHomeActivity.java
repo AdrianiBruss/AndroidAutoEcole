@@ -1,7 +1,10 @@
 package com.mpdam.ronald.autoecole.activities.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,7 @@ public class InstructorHomeActivity extends SideMenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.activity_instructor_home, (ViewGroup) findViewById(R.id.container));
@@ -62,4 +66,8 @@ public class InstructorHomeActivity extends SideMenuActivity {
 
     }
 
+    private Bitmap base64ToBitmap(String b64) {
+        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+    }
 }
