@@ -1,47 +1,21 @@
 package com.mpdam.ronald.autoecole.activities.main;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.mpdam.ronald.autoecole.R;
-import com.mpdam.ronald.autoecole.activities.capture.CaptureActivity;
-import com.mpdam.ronald.autoecole.activities.googleMap.LessonActivity;
-import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
-import com.mpdam.ronald.autoecole.activities.home.StudentHomeActivity;
-import com.mpdam.ronald.autoecole.models.Instructor;
-import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.models.Instructor;
 import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
 import com.mpdam.ronald.autoecole.modelsRepositories.StudentRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
-import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.RestAdapter;
-import com.strongloop.android.loopback.User;
 import com.strongloop.android.loopback.callbacks.ObjectCallback;
-import com.strongloop.android.loopback.callbacks.VoidCallback;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
         //get current user from cache
         findInstructor();
 
-//        User newStudent = studentRepo.createUser( "student1@mail.fr","password",
-//                new Student().setData( "student1", "", "student1", "","", ""));
+//        Instructor newInstructor = instructorRepo.createUser( "instructor1@mail.fr","password",
+//                new Instructor().setData( "Paul", "Samaré","", ""));
 //
-//        newStudent.save(new VoidCallback() {
+//        newInstructor.save(new VoidCallback() {
 //            @Override
 //            public void onSuccess() {
 //                Log.e("message", "User created !");
@@ -82,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //            @Override
 //            public void onError(Throwable t) {
-//                Log.e("message", t.toString());
+//                Log.e("message", t.getLocalizedMessage()+ ", " + t.getMessage() + ", " +  t.toString());
 //            }
 //        });
 
@@ -122,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("onSuccess","instructor null");
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
-                    Constant.INSTRUCTOR = instructor;
+//                    Constant.INSTRUCTOR = instructor;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
             }

@@ -2,6 +2,9 @@ package com.mpdam.ronald.autoecole.models;
 
 import com.google.common.collect.ImmutableMap;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Ronald on 28/07/2016.
  */
@@ -13,7 +16,14 @@ public class Instructor extends com.strongloop.android.loopback.User {
     public String lastname;
     public String phone;
 
-    public ImmutableMap setData(String login, String firstn, String lastn, String tel){
-        return ImmutableMap.of("Username", login, "firstname", firstn, "lastname", lastn, "phone", tel);
+    public Map<String, ? extends Object> setData(String login, String firstn, String lastn, String tel){
+        HashMap ht = new HashMap();
+
+        ht.put("username", login);
+        ht.put("firstname", firstn);
+        ht.put("lastname", lastn);
+        ht.put("phone", tel);
+
+        return ht;
     }
 }

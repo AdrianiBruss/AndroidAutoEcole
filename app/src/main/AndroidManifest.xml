@@ -65,7 +65,7 @@
         </activity>
         <activity android:name=".activities.main.MainActivity" />
         <activity
-            android:name=".activities.googleMap.LessonActivity"
+            android:name=".activities.lesson.LessonActivity"
             android:label="@string/title_activity_lesson" />
         <activity
             android:name=".activities.capture.CaptureActivity"
@@ -74,8 +74,12 @@
         <activity
             android:name=".activities.splashscreen.ContactActivity"
             android:theme="@style/SplashTheme" />
-        <activity android:name=".activities.home.InstructorHomeActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activities.home.StudentHomeActivity"  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities.home.InstructorHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.home.StudentHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.account.LoginActivity"
             android:theme="@style/SplashTheme" />
@@ -85,7 +89,8 @@
         <activity
             android:name=".activities.menu.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.home.StudentActivity"></activity>
     </application>
 
 </manifest>
