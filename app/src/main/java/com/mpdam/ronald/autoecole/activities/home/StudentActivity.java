@@ -69,7 +69,7 @@ public class StudentActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
 
-        String url = Constant.URL + "/Students/" + userId + "/lessons?access_token=" + token;
+        String url = Constant.URL + "Students/" + userId + "/lessons?access_token=" + token;
 
         JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>()
