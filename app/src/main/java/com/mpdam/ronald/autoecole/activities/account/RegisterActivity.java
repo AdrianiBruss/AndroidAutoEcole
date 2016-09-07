@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerPassword;
     private EditText registerAddress;
     private EditText registerPhone;
+    private RelativeLayout registerSplash;
 
     private String encodedImage;
     private Uri photoURI;
@@ -90,12 +92,15 @@ public class RegisterActivity extends AppCompatActivity {
         registerPassword    = (EditText) findViewById(R.id.registerPassword);
         registerAddress     = (EditText) findViewById(R.id.registerAddress);
         registerPhone       = (EditText) findViewById(R.id.registerPhone);
+        registerSplash      = (RelativeLayout) findViewById(R.id.registerSplash);
 
 
         // Submit form
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                registerSplash.setVisibility(View.VISIBLE);
 
                 String username     = registerUsername.getText().toString();
                 String firstname    = registerFirstname.getText().toString();
@@ -120,11 +125,13 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess() {
                             Log.e("message", "User created !");
+                            registerSplash.setVisibility(View.GONE);
                             startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                         }
 
                         @Override
                         public void onError(Throwable t) {
+                            registerSplash.setVisibility(View.GONE);
                             Log.e("message", t.toString());
                         }
                     });
