@@ -65,7 +65,7 @@ public class StudentActivity extends AppCompatActivity {
         preferences = getSharedPreferences("AUTHENTICATION_DATA", Context.MODE_PRIVATE);
         String token = preferences.getString("Authentication_Token","");
         Log.e("token", token);
-        String userId = Constant.STUDENT.getId().toString();
+        String userId = Constant.USER.getId().toString();
 
         queue = Volley.newRequestQueue(this);
 
@@ -103,7 +103,7 @@ public class StudentActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ProfileFragment().newInstance(Constant.STUDENT), "");
+        adapter.addFragment(new ProfileFragment().newInstance(Constant.USER), "");
         adapter.addFragment(new LessonFragment().newInstance(lessons), "");
 
         viewPager.setAdapter(adapter);

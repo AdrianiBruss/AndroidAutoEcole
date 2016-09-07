@@ -51,7 +51,7 @@ public class InstructorHomeActivity extends SideMenuActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Constant.STUDENT = all.get(position);
+                        Constant.USER = all.get(position);
                         startActivity(new Intent(InstructorHomeActivity.this, StudentActivity.class));
                     }
                 });

@@ -72,8 +72,11 @@ public class ProfileFragment extends Fragment {
                 Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
                 BitmapDrawable background = new BitmapDrawable(imageBitmap);
                 linearLayoutProfile.setBackgroundDrawable(background);
-//
-//              linearLayoutProfile.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.studentpicture, null));
+
+            } else {
+
+                linearLayoutProfile.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.studentpicture, null));
+
             }
 
 

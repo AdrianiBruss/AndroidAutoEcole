@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 } else {
-                    Constant.STUDENT = student;
+                    Constant.USER = student;
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                     finish();
                 }
