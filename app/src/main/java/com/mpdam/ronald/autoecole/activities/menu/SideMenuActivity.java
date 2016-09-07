@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.account.RegisterActivity;
+import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
+import com.mpdam.ronald.autoecole.activities.home.StudentHomeActivity;
 
 public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,13 +79,12 @@ public class SideMenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
+        if (id == R.id.nav_students) {
+            startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
+        } else if (id == R.id.nav_lessons) {
+            startActivity(new Intent(getApplicationContext(), StudentHomeActivity.class));
         } else if (id == R.id.nav_register) {
             startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

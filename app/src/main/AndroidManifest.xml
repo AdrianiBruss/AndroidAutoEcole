@@ -73,10 +73,6 @@
             android:name=".activities.lesson.LessonActivity"
             android:label="@string/title_activity_lesson" />
         <activity
-            android:name=".activities.capture.CaptureActivity"
-            android:label="@string/title_activity_capture"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activities.splashscreen.ContactActivity"
             android:theme="@style/SplashTheme" />
         <activity

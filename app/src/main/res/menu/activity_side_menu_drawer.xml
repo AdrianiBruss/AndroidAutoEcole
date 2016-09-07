@@ -3,21 +3,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="List of students" />
-        <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_students"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="List of lessons" />
+            android:title="Liste des étudiants" />
+        <item
+            android:id="@+id/nav_lessons"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Liste des cours" />
         <item
             android:id="@+id/nav_register"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Register a new student" />
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Enregistrer un étudiant" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Paramètres" />
     </group>
 
     <item android:title="Other">
@@ -25,11 +25,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="More about us" />
+                android:title="En savoir plus" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Logout" />
+                android:title="Se déconnecter" />
         </menu>
     </item>
 

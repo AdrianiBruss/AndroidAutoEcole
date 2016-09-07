@@ -21,7 +21,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.common.collect.ObjectArrays;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.ProfileFragment;
@@ -33,8 +36,13 @@ import com.mpdam.ronald.autoecole.utils.Constant;
 import com.strongloop.android.loopback.RestAdapter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class StudentActivity extends AppCompatActivity {
@@ -62,9 +70,9 @@ public class StudentActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
+        // get token stored in Preferences for API request /lessons of one student
         preferences = getSharedPreferences("AUTHENTICATION_DATA", Context.MODE_PRIVATE);
         String token = preferences.getString("Authentication_Token","");
-        Log.e("token", token);
         String userId = Constant.STUDENT.getId().toString();
 
         queue = Volley.newRequestQueue(this);
@@ -77,11 +85,43 @@ public class StudentActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response)
                     {
-                        Gson gson = new Gson();
+                        lessons = new ArrayList();
+                        int i = 0;
 
-                        lessons = gson.fromJson(response.toString(), new TypeToken<List<Lesson>>() {
-                        }.getType());
+                        //convert response to List<Lesson> that we can handle easily
+                        while(i < response.length())
+                        {
+                            try
+                            {
+                                JSONObject object = response.getJSONObject(i);
 
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+                                Date dateLesson = new Date();
+
+                                try {
+                                    Date date = formatter.parse(object.get("date").toString());
+                                    dateLesson = date;
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String duringLesson = (String) object.get("during");
+                                Double distanceLesson = object.getDouble("distance");
+                                JSONArray geopointsLesson = object.getJSONArray("geoPoints");
+
+                                Lesson lesson = new Lesson(dateLesson, duringLesson, distanceLesson, geopointsLesson);
+                                lessons.add(lesson);
+
+                            }
+                            catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                            i++;
+                        }
+
+                        //setup TapBar
                         setupViewPager(viewPager);
                         tabLayout.setupWithViewPager(viewPager);
                     }

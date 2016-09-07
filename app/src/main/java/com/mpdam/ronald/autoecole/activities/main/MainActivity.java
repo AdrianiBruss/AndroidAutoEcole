@@ -6,16 +6,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.gson.JsonArray;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
 import com.mpdam.ronald.autoecole.models.Instructor;
+import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.models.Student;
 import com.mpdam.ronald.autoecole.modelsRepositories.InstructorRepository;
+import com.mpdam.ronald.autoecole.modelsRepositories.LessonRepository;
 import com.mpdam.ronald.autoecole.modelsRepositories.StudentRepository;
 import com.mpdam.ronald.autoecole.utils.Constant;
+import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.RestAdapter;
 import com.strongloop.android.loopback.callbacks.ObjectCallback;
+import com.strongloop.android.loopback.callbacks.VoidCallback;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,52 +39,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if (googleApiClient == null) {
-//            googleApiClient = new GoogleApiClient.Builder(this)
-//                    .addConnectionCallbacks(this)
-//                    .addOnConnectionFailedListener(this)
-//                    .addApi(LocationServices.API)
-//                    .build();
-//        }
-
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         instructorRepo = adapter.createRepository(InstructorRepository.class);
         studentRepo = adapter.createRepository(StudentRepository.class);
-//
+
         //get current user from cache
         findInstructor();
-//
-//        User newStudent = studentRepo.createUser( "student1@mail.fr","password",
-//                new Student().setData( "student1", "", "student1", "","", ""));
-
-
-//        Instructor newInstructor = instructorRepo.createUser( "instructor1@mail.fr","password",
-//                new Instructor().setData( "Paul", "Samaré","", ""));
-
-//
-//        newInstructor.save(new VoidCallback() {
-//            @Override
-//            public void onSuccess() {
-//                Log.e("message", "User created !");
-//            }
-//
-//            @Override
-//            public void onError(Throwable t) {
-//                Log.e("message", t.getLocalizedMessage()+ ", " + t.getMessage() + ", " +  t.toString());
-//            }
-//        });
-
-//        instructorRepo.createObject(ImmutableMap.of("Modele", "Citroën","Marque", "C3")).save(new VoidCallback() {
-//            @Override
-//            public void onSuccess() {
-//                Log.e("message", "save !");// Pencil now exists on the server!
-//            }
-//
-//            @Override
-//            public void onError(Throwable t) {
-//                Log.e("message", t.toString());// save failed, handle the error
-//            }
-//        });
 
 //        repository.findById("579743118df0ad1990d60e95", new ObjectCallback<Voiture>() {
 //            @Override
@@ -98,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Instructor instructor) {
                 if (instructor == null) {
-                    Log.e("onSuccess","instructor null");
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
 //                    Constant.INSTRUCTOR = instructor;
@@ -120,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Student student) {
                 if (student == null) {
-                    Log.e("onSuccess","student null");
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 } else {

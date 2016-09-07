@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AutoEcole</string>
+    <string name="app_name">Driving School</string>
     <string name="title_activity_lesson">Map</string>
     <string name="title_activity_capture">CaptureActivity</string>
     <string name="bienvenu">Bienvenu sur l\'application Driving School</string>

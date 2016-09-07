@@ -12,6 +12,7 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.common.collect.ObjectArrays;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.adapters.LessonAdapter;
 import com.mpdam.ronald.autoecole.adapters.StudentAdapter;
@@ -39,7 +40,7 @@ public class LessonFragment extends Fragment {
 
     private GridView listView;
 
-    public static LessonFragment newInstance(ArrayList lessons) {
+    public static LessonFragment newInstance(ArrayList<Object> lessons) {
         LessonFragment fragment = new LessonFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, lessons);

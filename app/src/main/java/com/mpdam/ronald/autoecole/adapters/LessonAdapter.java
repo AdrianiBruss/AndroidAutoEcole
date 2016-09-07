@@ -37,7 +37,6 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
         if(viewHolder == null){
             viewHolder = new LessonViewHolder();
             viewHolder.title = (TextView) convertView.findViewById(R.id.textViewLesson);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.textViewName);
             viewHolder.date = (TextView) convertView.findViewById(R.id.textViewDate);
 
             convertView.setTag(viewHolder);
@@ -50,7 +49,6 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.title.setText("Cours");
-        viewHolder.name.setText(lesson.name);
         viewHolder.date.setText(date);
 
         return convertView;
@@ -58,7 +56,6 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
     private class LessonViewHolder{
         public TextView title;
-        public TextView name;
         public TextView date;
     }
 
