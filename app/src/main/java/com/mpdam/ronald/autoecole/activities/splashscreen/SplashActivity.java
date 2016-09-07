@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long TIMER = 2000;
+    private static final long TIMER = 6000;
     private Timer timer;
 
     @Override
