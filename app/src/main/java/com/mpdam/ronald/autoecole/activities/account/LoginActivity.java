@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(AccessToken token, Instructor currentInstructor) {
+                Constant.INSTRUCTOR = currentInstructor;
                 editor.putString("Authentication_Token", token.getId().toString());
                 editor.apply();
 

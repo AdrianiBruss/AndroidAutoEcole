@@ -60,17 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView mImageView;
     private Button registerButton;
     private EditText registerUsername;
+    private EditText registerFirstname;
+    private EditText registerLastname;
     private EditText registerEmail;
     private EditText registerPassword;
     private EditText registerAddress;
     private EditText registerPhone;
 
     private String encodedImage;
-
     private Uri photoURI;
-
-
-    private LinearLayout linearLayout;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,28 +84,38 @@ public class RegisterActivity extends AppCompatActivity {
         mImageView          = (ImageView) findViewById(R.id.imageCaptured);
         registerButton      = (Button) findViewById(R.id.registerButton);
         registerUsername    = (EditText) findViewById(R.id.registerUsername);
+        registerFirstname   = (EditText) findViewById(R.id.registerFirstname);
+        registerLastname    = (EditText) findViewById(R.id.registerLastname);
         registerEmail       = (EditText) findViewById(R.id.registerEmail);
         registerPassword    = (EditText) findViewById(R.id.registerPassword);
         registerAddress     = (EditText) findViewById(R.id.registerAddress);
         registerPhone       = (EditText) findViewById(R.id.registerPhone);
 
+
+        // Submit form
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String username     = registerUsername.getText().toString();
+                String firstname    = registerFirstname.getText().toString();
+                String lastname     = registerLastname.getText().toString();
                 String email        = registerEmail.getText().toString();
                 String password     = registerPassword.getText().toString();
                 String address      = registerAddress.getText().toString();
                 String phone        = registerPhone.getText().toString();
 
+
+                // Check if email and password are not empty
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                     Toast.makeText(getApplicationContext(), "Please enter your username and your password", Toast.LENGTH_SHORT).show();
                 } else {
 
+                    // Create new Student user method
                     Student newStudent = studentRepo.createUser( email, password,
-                            new Student().setData( username, address, username, "", phone, encodedImage));
+                            new Student().setData( username, address, firstname, lastname, phone, Constant.encodedImage));
 
+                    // Save Student callback
                     newStudent.save(new VoidCallback() {
                         @Override
                         public void onSuccess() {
@@ -126,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    // Call Camera Intent
     public void capturePicture(View view) {
         dispatchTakePictureIntent();
     }
@@ -135,43 +145,60 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void dispatchTakePictureIntent() {
 
+        // Init camera intent
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
+
             try {
                 photoFile = createImageFile();
+
             } catch (IOException ex) {
                 // Error occurred while creating the File
                 Log.e("error", "Error occurred while creating the File");
             }
+
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(this,
                         "com.mpdam.ronald.autoecole.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                Constant.PhotoURI = photoURI;
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
 
 
+    // Callback called when picture has been shot
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
-            Log.e("photoURI", String.valueOf(photoURI));
+            photoURI = Constant.PhotoURI;
 
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
-//                BitmapDrawable background = new BitmapDrawable(bitmap);
-//                linearLayout.setBackgroundDrawable(background);
 
-                encodedImage = bitmapToBase64(bitmap);
-                Log.e("encodedImage", encodedImage);
+                // Getting the bitmap image from URI
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+
+                //Scaling down the bitmap
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 640, 360, false);
+
+                // Rotate Image
+                Bitmap rotatedBitmap = Bitmap.createBitmap(resizedBitmap, 0, 0, 640, 360, matrix, true);
+
+                // Converting bitmap to base46
+                encodedImage = bitmapToBase64(rotatedBitmap);
+
+                Constant.encodedImage = encodedImage;
 
                 mImageView.setBackgroundResource(R.drawable.takepictureok);
 
@@ -184,12 +211,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private Bitmap base64ToBitmap(String b64) {
-        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-    }
-
     private String bitmapToBase64(Bitmap bitmap) {
+
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
@@ -211,14 +234,6 @@ public class RegisterActivity extends AppCompatActivity {
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
     }
-
-    public static String encodeToBase64(Bitmap image, Bitmap.CompressFormat compressFormat, int quality)
-    {
-        ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
-        image.compress(compressFormat, quality, byteArrayOS);
-        return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.DEFAULT);
-    }
-
 
 
 }

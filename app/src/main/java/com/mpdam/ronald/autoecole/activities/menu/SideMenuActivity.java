@@ -131,6 +131,9 @@ public class SideMenuActivity extends AppCompatActivity
 
     private void getUserForMenu() {
 
+        Log.e("Constant.STUDENT", String.valueOf(Constant.STUDENT));
+        Log.e("Constant.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
+
         if ( Constant.STUDENT != null ) {
 
             navigationView.getMenu().findItem(R.id.nav_register).setVisible(false);

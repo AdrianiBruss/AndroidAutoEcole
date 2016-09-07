@@ -56,7 +56,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.address.setText(student.get("address").toString());
 
         if ( student.get("picture") != null  ) {
-//            Log.e("picture", student.get("picture").toString());
+            Log.e("picture", student.get("picture").toString());
             Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
             viewHolder.photo.setImageBitmap(imageBitmap);
         }
