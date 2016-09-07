@@ -3,21 +3,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_students"
             android:icon="@drawable/ic_menu_camera"
             android:title="List of students" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_lessons"
             android:icon="@drawable/ic_menu_gallery"
             android:title="List of lessons" />
         <item
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Register a new student" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Tools" />-->
     </group>
 
     <item android:title="Other">

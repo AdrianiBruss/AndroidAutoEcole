@@ -11,7 +11,7 @@ import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.menu.SideMenuActivity;
 import com.mpdam.ronald.autoecole.activities.main.MainActivity;
 
-public class ContactActivity extends SideMenuActivity {
+public class ContactActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

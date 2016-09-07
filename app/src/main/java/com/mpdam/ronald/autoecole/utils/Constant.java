@@ -14,7 +14,8 @@ import com.strongloop.android.loopback.User;
  */
 public class Constant {
 
-    public static final String URL = "http://autoecoleandroid-cloudbruss.rhcloud.com/api/";
-    public static Student USER = null;
+    public static final String URL          = "http://autoecoleandroid-cloudbruss.rhcloud.com/api/";
+    public static Student STUDENT           = null;
+    public static Instructor INSTRUCTOR    = null;
 
 }

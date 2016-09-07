@@ -34,7 +34,6 @@ public class InstructorHomeActivity extends SideMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.activity_instructor_home, (ViewGroup) findViewById(R.id.container));
 
@@ -51,7 +50,7 @@ public class InstructorHomeActivity extends SideMenuActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Constant.USER = all.get(position);
+                        Constant.STUDENT = all.get(position);
                         startActivity(new Intent(InstructorHomeActivity.this, StudentActivity.class));
                     }
                 });

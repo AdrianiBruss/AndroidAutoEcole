@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
-                Constant.USER = currentStudent;
+                Constant.STUDENT = currentStudent;
                 editor.putString("Authentication_Token", token.getId().toString());
                 editor.apply();
 
