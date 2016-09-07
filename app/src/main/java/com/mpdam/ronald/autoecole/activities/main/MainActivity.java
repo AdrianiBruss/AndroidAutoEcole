@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
                     Constant.INSTRUCTOR = instructor;
+                    Constant.CURRENT_USER = "INSTRUCTOR";
                     Log.e("Constant.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Constant.STUDENT = student;
+                    Constant.CURRENT_USER = "STUDENT";
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                     finish();
                 }
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
+        Constant.CURRENT_USER = "";
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }

@@ -28,7 +28,6 @@ public class StudentHomeActivity extends AppCompatActivity {
         adapter = new RestAdapter(getApplicationContext(), Constant.URL);
         studentRepo = adapter.createRepository(StudentRepository.class);
 
-//        Log.e("current user", Constant.USER.toString());
     }
 
     public void logout(View view) {

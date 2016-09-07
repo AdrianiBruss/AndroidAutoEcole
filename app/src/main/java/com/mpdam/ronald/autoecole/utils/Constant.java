@@ -23,5 +23,6 @@ public class Constant {
     public static Instructor INSTRUCTOR     = null;
     public static Uri PhotoURI              = null;
     public static String encodedImage       = null;
+    public static String CURRENT_USER       = null;
 
 }

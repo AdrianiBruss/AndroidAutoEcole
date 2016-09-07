@@ -67,8 +67,4 @@ public class InstructorHomeActivity extends SideMenuActivity {
         });
 
     }
-    private Bitmap base64ToBitmap(String b64) {
-        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
-    }
 }

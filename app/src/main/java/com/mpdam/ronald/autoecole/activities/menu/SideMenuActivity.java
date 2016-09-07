@@ -134,7 +134,7 @@ public class SideMenuActivity extends AppCompatActivity
         Log.e("Constant.STUDENT", String.valueOf(Constant.STUDENT));
         Log.e("Constant.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
 
-        if ( Constant.STUDENT != null ) {
+        if ( Constant.CURRENT_USER == "STUDENT" ) {
 
             navigationView.getMenu().findItem(R.id.nav_register).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_students).setVisible(false);
@@ -143,7 +143,7 @@ public class SideMenuActivity extends AppCompatActivity
             menuFirstname.setText(Constant.STUDENT.get("firstname").toString());
             menuLastname.setText(Constant.STUDENT.get("lastname").toString());
 
-        } else if ( Constant.INSTRUCTOR != null ) {
+        } else if ( Constant.CURRENT_USER == "INSTRUCTOR" ) {
 
             navigationView.getMenu().findItem(R.id.nav_lessons).setVisible(false);
 
