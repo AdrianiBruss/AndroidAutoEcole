@@ -79,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(AccessToken token, Instructor currentInstructor) {
+                Constant.INSTRUCTOR = currentInstructor;
+                Constant.CURRENT_USER = "INSTRUCTOR";
                 editor.putString("Authentication_Token", token.getId().toString());
                 editor.apply();
 
@@ -101,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AccessToken token, Student currentStudent) {
                 Constant.STUDENT = currentStudent;
+                Constant.CURRENT_USER = "STUDENT";
                 editor.putString("Authentication_Token", token.getId().toString());
                 editor.apply();
 
@@ -116,10 +119,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void goToRegister(View view) {
-        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
     }
 
 }

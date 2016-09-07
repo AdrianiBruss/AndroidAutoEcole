@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_students"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Liste des Ã©tudiants" />
+            android:title="Liste des étudiants" />
         <item
             android:id="@+id/nav_lessons"
             android:icon="@drawable/ic_menu_gallery"
@@ -13,11 +13,11 @@
         <item
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Enregistrer un Ã©tudiant" />
+            android:title="Enregistrer un étudiant" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="ParamÃ¨tres" />
+            android:title="Paramètres" />
     </group>
 
     <item android:title="Other">
@@ -29,7 +29,7 @@
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Se dÃ©connecter" />
+                android:title="Se déconnecter" />
         </menu>
     </item>
 

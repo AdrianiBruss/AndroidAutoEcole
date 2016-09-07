@@ -34,7 +34,6 @@ public class InstructorHomeActivity extends SideMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.activity_instructor_home, (ViewGroup) findViewById(R.id.container));
 
@@ -43,7 +42,11 @@ public class InstructorHomeActivity extends SideMenuActivity {
 
         listView = (ListView) findViewById(R.id.listViewStudents);
 
+        Log.e("Instructor.STUDENT", String.valueOf(Constant.STUDENT));
+        Log.e("Instructor.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
+
         studentRepo.findAll(new ListCallback<Student>() {
+
             @Override
             public void onSuccess(final List<Student> all) {
                 StudentAdapter sa = new StudentAdapter(InstructorHomeActivity.this, all);
@@ -63,9 +66,5 @@ public class InstructorHomeActivity extends SideMenuActivity {
             }
         });
 
-    }
-    private Bitmap base64ToBitmap(String b64) {
-        byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
 }

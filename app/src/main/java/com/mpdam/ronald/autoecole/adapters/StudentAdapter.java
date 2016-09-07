@@ -42,7 +42,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             viewHolder.lastname = (TextView) convertView.findViewById(R.id.textViewLastname);
             viewHolder.phone = (TextView) convertView.findViewById(R.id.textViewPhone);
             viewHolder.address = (TextView) convertView.findViewById(R.id.textViewAddress);
-            viewHolder.picture = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
+            viewHolder.photo = (ImageView) convertView.findViewById(R.id.imageViewPhoto);
             convertView.setTag(viewHolder);
         }
 
@@ -56,9 +56,8 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.address.setText(student.get("address").toString());
 
         if ( student.get("picture") != null  ) {
-//            Log.e("picture", student.get("picture").toString());
             Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
-            viewHolder.picture.setImageBitmap(imageBitmap);
+            viewHolder.photo.setImageBitmap(imageBitmap);
         }
 
         return convertView;
@@ -69,7 +68,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         public TextView lastname;
         public TextView phone;
         public TextView address;
-        public ImageView picture;
+        public ImageView photo;
     }
 
     private Bitmap base64ToBitmap(String b64) {
