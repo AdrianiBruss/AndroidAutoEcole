@@ -214,6 +214,7 @@ public class LessonActivity extends FragmentActivity implements LocationListener
             .save(new VoidCallback() {
                 @Override
                 public void onSuccess() {
+
                     Toast.makeText(getApplicationContext(), "Le cours a bien été créé !", Toast.LENGTH_SHORT).show();
                 }
 

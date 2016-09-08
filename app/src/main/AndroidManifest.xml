@@ -91,7 +91,9 @@
             android:name=".activities.menu.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activities.home.StudentActivity"/>
+        <activity
+            android:name=".activities.home.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

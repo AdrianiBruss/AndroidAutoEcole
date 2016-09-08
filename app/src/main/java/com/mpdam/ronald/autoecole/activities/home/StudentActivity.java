@@ -11,7 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 import com.android.volley.Request;
@@ -30,6 +32,7 @@ import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.ProfileFragment;
 import com.mpdam.ronald.autoecole.activities.lesson.LessonActivity;
 import com.mpdam.ronald.autoecole.activities.lesson.LessonFragment;
+import com.mpdam.ronald.autoecole.activities.menu.SideMenuActivity;
 import com.mpdam.ronald.autoecole.adapters.LessonAdapter;
 import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.utils.Constant;
@@ -45,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends SideMenuActivity {
 
     private TabLayout tabLayout;
 
@@ -62,7 +65,10 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+//        setContentView(R.layout.activity_student);
+
+        LayoutInflater inflater = getLayoutInflater();
+        inflater.inflate(R.layout.activity_student, (ViewGroup) findViewById(R.id.container));
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 

@@ -5,15 +5,15 @@
         <item
             android:id="@+id/nav_students"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Liste des étudiants" />
+            android:title="Liste des Étudiants" />
         <item
             android:id="@+id/nav_lessons"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Liste des cours" />
+            android:title="Liste des Cours" />
         <item
             android:id="@+id/nav_register"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Enregistrer un étudiant" />
+            android:title="Enregistrer un Étudiant" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

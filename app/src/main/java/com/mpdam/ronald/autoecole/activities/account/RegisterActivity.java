@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText registerPassword;
     private EditText registerAddress;
     private EditText registerPhone;
+    private RelativeLayout registerSplash;
 
     private String encodedImage;
     private Uri photoURI;
@@ -90,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerPassword    = (EditText) findViewById(R.id.registerPassword);
         registerAddress     = (EditText) findViewById(R.id.registerAddress);
         registerPhone       = (EditText) findViewById(R.id.registerPhone);
+        registerSplash      = (RelativeLayout) findViewById(R.id.registerSplash);
 
 
         // Submit form
@@ -97,13 +100,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            String username     = registerUsername.getText().toString();
-            String firstname    = registerFirstname.getText().toString();
-            String lastname     = registerLastname.getText().toString();
-            String email        = registerEmail.getText().toString();
-            String password     = registerPassword.getText().toString();
-            String address      = registerAddress.getText().toString();
-            String phone        = registerPhone.getText().toString();
+                registerSplash.setVisibility(View.VISIBLE);
+
+                String username     = registerUsername.getText().toString();
+                String firstname    = registerFirstname.getText().toString();
+                String lastname     = registerLastname.getText().toString();
+                String email        = registerEmail.getText().toString();
+                String password     = registerPassword.getText().toString();
+                String address      = registerAddress.getText().toString();
+                String phone        = registerPhone.getText().toString();
 
 
             // Check if email and password are not empty
@@ -115,18 +120,22 @@ public class RegisterActivity extends AppCompatActivity {
                 Student newStudent = studentRepo.createUser( email, password,
                         new Student().setData( username, address, firstname, lastname, phone, Constant.encodedImage));
 
-                // Save Student callback
-                newStudent.save(new VoidCallback() {
-                    @Override
-                    public void onSuccess() {
-                        startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
-                    }
+                    // Save Student callback
+                    newStudent.save(new VoidCallback() {
+                        @Override
+                        public void onSuccess() {
+                            registerSplash.setVisibility(View.GONE);
+                            startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
+                        }
 
-                    @Override
-                    public void onError(Throwable t) {
-                        Log.e("message", t.toString());
-                    }
-                });
+                        @Override
+                        public void onError(Throwable t) {
+                            registerSplash.setVisibility(View.GONE);
+                            Log.e("message", t.toString());
+                        }
+                    });
+                }
+
             }
             }
         });
