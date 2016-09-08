@@ -11,6 +11,7 @@ import com.google.gson.JsonArray;
 import com.mpdam.ronald.autoecole.R;
 import com.mpdam.ronald.autoecole.activities.account.LoginActivity;
 import com.mpdam.ronald.autoecole.activities.home.InstructorHomeActivity;
+import com.mpdam.ronald.autoecole.activities.home.StudentHomeActivity;
 import com.mpdam.ronald.autoecole.models.Instructor;
 import com.mpdam.ronald.autoecole.models.Lesson;
 import com.mpdam.ronald.autoecole.models.Student;
@@ -71,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Constant.INSTRUCTOR = instructor;
                     Constant.CURRENT_USER = "INSTRUCTOR";
-                    Log.e("Constant.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
                     startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
                 }
             }
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Constant.STUDENT = student;
                     Constant.CURRENT_USER = "STUDENT";
-                    startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), StudentHomeActivity.class));
                     finish();
                 }
             }

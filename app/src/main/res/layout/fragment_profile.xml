@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:text="Firstname"
-            android:textSize="18dp"
+            android:textSize="26sp"
             android:layout_marginLeft="20dp"/>
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:text="Lastname"
-            android:textSize="18dp"
+            android:textSize="26sp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp" />
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:text="Phone"
-                android:textSize="14dp"
+                android:textSize="18sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp" />
 
@@ -54,7 +54,7 @@
                 android:layout_below="@+id/textViewPhone"
                 android:textColor="#FFFFFF"
                 android:text="Address"
-                android:textSize="14dp"
+                android:textSize="18sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp" />
 
@@ -65,7 +65,7 @@
                 android:layout_alignTop="@+id/textViewPhone"
                 android:textColor="#FFFFFF"
                 android:layout_alignParentRight="true"
-                android:text="Number of hours"
+                android:text=""
                 android:textSize="18dp"
                 android:textAllCaps="true"
                 android:layout_marginRight="20dp"

@@ -48,7 +48,6 @@ public class GoogleAPI {
     {
         if (locMng.isProviderEnabled(LocationManager.GPS_PROVIDER))
         {
-            Toast.makeText(activity, "Le GPS est activé !", Toast.LENGTH_SHORT).show();
             return new GPSLocation().startLocationUpdates(activity, api, request, map);
         }
         else

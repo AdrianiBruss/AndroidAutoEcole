@@ -1,15 +1,28 @@
 package com.mpdam.ronald.autoecole.models;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
+import android.widget.GridView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.vision.barcode.Barcode;
 import com.google.common.collect.ImmutableMap;
+import com.mpdam.ronald.autoecole.adapters.LessonAdapter;
+import com.mpdam.ronald.autoecole.utils.Constant;
+import com.strongloop.android.loopback.AccessToken;
 import com.strongloop.android.loopback.Model;
+import com.strongloop.android.remoting.adapters.Adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -131,4 +144,5 @@ public class Lesson extends Model {
         return String.valueOf(duration);
 
     }
+
 }

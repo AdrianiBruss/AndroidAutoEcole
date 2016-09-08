@@ -42,9 +42,6 @@ public class InstructorHomeActivity extends SideMenuActivity {
 
         listView = (ListView) findViewById(R.id.listViewStudents);
 
-        Log.e("Instructor.STUDENT", String.valueOf(Constant.STUDENT));
-        Log.e("Instructor.INSTRUCTOR", String.valueOf(Constant.INSTRUCTOR));
-
         studentRepo.findAll(new ListCallback<Student>() {
 
             @Override

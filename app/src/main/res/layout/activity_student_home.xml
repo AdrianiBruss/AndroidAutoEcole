@@ -1,31 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="100dp"
-    tools:context="com.mpdam.ronald.autoecole.activities.home.StudentHomeActivity">
+    android:background="@drawable/background_students"
+    tools:context=".activities.home.StudentHomeActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="55dp"
+    android:gravity="center|fill_horizontal|center_vertical|center_horizontal|fill|bottom|left|right|fill_vertical|top">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Student Home Activity"
-        android:id="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <GridView
+        android:id="@+id/student_gridViewLessons"
+        android:layout_width="match_parent"
+        android:layout_height="524dp"
+        android:columnWidth="250dp"
+        android:numColumns="2"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Log out"
-        android:id="@+id/logout"
-        android:onClick="logout"
-        android:layout_gravity="center_horizontal" />
-
-</LinearLayout>
+</FrameLayout>

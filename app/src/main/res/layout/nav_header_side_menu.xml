@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/side_nav_bar"
+    android:background="#B3B3B3"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/studentpicture" />
+         />
 
     <TextView
         android:id="@+id/menuFirstname"
@@ -22,9 +22,10 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Will"
-        android:textSize="55sp"
+        android:textSize="40sp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
         />
 
     <TextView
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="120dp"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:text="Smith" />
 
 </RelativeLayout>

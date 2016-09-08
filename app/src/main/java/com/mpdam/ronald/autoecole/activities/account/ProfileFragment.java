@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
         textViewLastname = (TextView) view.findViewById(R.id.textViewLastname);
         textViewPhone = (TextView) view.findViewById(R.id.textViewPhone);
         textViewAddress = (TextView) view.findViewById(R.id.textViewAddress);
-        textViewHours = (TextView) view.findViewById(R.id.textViewHours);
+//        textViewHours = (TextView) view.findViewById(R.id.textViewHours);
 
         if(student != null)
         {
@@ -72,7 +72,6 @@ public class ProfileFragment extends Fragment {
                 Bitmap imageBitmap = base64ToBitmap(student.get("picture").toString());
                 BitmapDrawable background = new BitmapDrawable(imageBitmap);
                 linearLayoutProfile.setBackgroundDrawable(background);
-
             } else {
 
                 linearLayoutProfile.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.studentpicture, null));
@@ -84,9 +83,9 @@ public class ProfileFragment extends Fragment {
             textViewLastname.setText(student.get("lastname").toString());
             textViewPhone.setText(student.get("phone").toString());
             textViewAddress.setText(student.get("address").toString());
-            if(student.get("nbHours") != null){
-                textViewHours.setText(String.format("%s hours", student.get("nbHours").toString()));
-            }
+//            if(student.get("nbHours") != null){
+////                textViewHours.setText(String.format("%s cours", student.get("nbHours").toString()));
+//            }
         }
 
         return view;

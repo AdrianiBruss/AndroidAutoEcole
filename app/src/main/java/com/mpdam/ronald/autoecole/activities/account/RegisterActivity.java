@@ -97,39 +97,37 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String username     = registerUsername.getText().toString();
-                String firstname    = registerFirstname.getText().toString();
-                String lastname     = registerLastname.getText().toString();
-                String email        = registerEmail.getText().toString();
-                String password     = registerPassword.getText().toString();
-                String address      = registerAddress.getText().toString();
-                String phone        = registerPhone.getText().toString();
+            String username     = registerUsername.getText().toString();
+            String firstname    = registerFirstname.getText().toString();
+            String lastname     = registerLastname.getText().toString();
+            String email        = registerEmail.getText().toString();
+            String password     = registerPassword.getText().toString();
+            String address      = registerAddress.getText().toString();
+            String phone        = registerPhone.getText().toString();
 
 
-                // Check if email and password are not empty
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Please enter your username and your password", Toast.LENGTH_SHORT).show();
-                } else {
+            // Check if email and password are not empty
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                Toast.makeText(getApplicationContext(), "Please enter your username and your password", Toast.LENGTH_SHORT).show();
+            } else {
 
-                    // Create new Student user method
-                    Student newStudent = studentRepo.createUser( email, password,
-                            new Student().setData( username, address, firstname, lastname, phone, Constant.encodedImage));
+                // Create new Student user method
+                Student newStudent = studentRepo.createUser( email, password,
+                        new Student().setData( username, address, firstname, lastname, phone, Constant.encodedImage));
 
-                    // Save Student callback
-                    newStudent.save(new VoidCallback() {
-                        @Override
-                        public void onSuccess() {
-                            Log.e("message", "User created !");
-                            startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
-                        }
+                // Save Student callback
+                newStudent.save(new VoidCallback() {
+                    @Override
+                    public void onSuccess() {
+                        startActivity(new Intent(getApplicationContext(), InstructorHomeActivity.class));
+                    }
 
-                        @Override
-                        public void onError(Throwable t) {
-                            Log.e("message", t.toString());
-                        }
-                    });
-                }
-
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.e("message", t.toString());
+                    }
+                });
+            }
             }
         });
 
@@ -140,9 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
         dispatchTakePictureIntent();
     }
 
-
-
-
+    
     private void dispatchTakePictureIntent() {
 
         // Init camera intent

@@ -83,7 +83,7 @@ public class StudentActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>()
                 {
                     @Override
-                    public void onResponse(JSONArray response)
+                    public ArrayList onResponse(JSONArray response)
                     {
                         lessons = new ArrayList();
                         int i = 0;
@@ -124,6 +124,7 @@ public class StudentActivity extends AppCompatActivity {
                         //setup TapBar
                         setupViewPager(viewPager);
                         tabLayout.setupWithViewPager(viewPager);
+                        return null;
                     }
                 },
                 new Response.ErrorListener()
@@ -190,6 +191,13 @@ public class StudentActivity extends AppCompatActivity {
 
     public void goToMap(View view) {
         Intent intent = new Intent(this, LessonActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, InstructorHomeActivity.class);
         startActivity(intent);
         finish();
     }
