@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    // Instructor login
     protected void instructorConnection(final String id, final String pass, final Context context){
 
         instructorRepo.loginUser(id , pass , new InstructorRepository.LoginCallback(){
@@ -97,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    // Student login
     protected void studentConnection(String id, String pass, final Context context){
         
         studentRepo.loginUser(id , pass , new StudentRepository.LoginCallback(){

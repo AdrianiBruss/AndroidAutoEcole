@@ -24,13 +24,11 @@ public class SplashActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                // lancer l'ecran home activity
 
-                // Intent
+                //  End of splashscreen
                 Intent intent = new Intent(SplashActivity.this, ContactActivity.class);
                 startActivity(intent);
 
-//                finish(); ou noHistory dans le manifest
             }
         }, TIMER);
     }

@@ -42,6 +42,7 @@ public class InstructorHomeActivity extends SideMenuActivity {
 
         listView = (ListView) findViewById(R.id.listViewStudents);
 
+        // getting all students from API
         studentRepo.findAll(new ListCallback<Student>() {
 
             @Override

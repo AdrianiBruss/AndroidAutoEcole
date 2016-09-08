@@ -47,18 +47,6 @@ public class MainActivity extends AppCompatActivity {
         //get current user from cache
         findInstructor();
 
-//        repository.findById("579743118df0ad1990d60e95", new ObjectCallback<Voiture>() {
-//            @Override
-//            public void onSuccess(Voiture v) {
-//                Log.e("message", v.getMarque());// found!
-//                Log.e("message", v.getModele());// found!
-//            }
-//
-//            public void onError(Throwable t) {
-//                Log.e("message", "error !");// handle the error
-//            }
-//        });
-
     }
 
 
@@ -107,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void logout(View view) {
-        Constant.CURRENT_USER = "";
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
     }
 }
 

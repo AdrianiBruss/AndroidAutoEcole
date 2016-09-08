@@ -80,27 +80,6 @@ public class SideMenuActivity extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.side_menu, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -120,6 +99,7 @@ public class SideMenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
 
             // logout
+            Constant.CURRENT_USER = "";
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         }
@@ -129,6 +109,8 @@ public class SideMenuActivity extends AppCompatActivity
         return true;
     }
 
+
+    // Display menu items according to CURRENT_USER
     private void getUserForMenu() {
 
         if ( Constant.CURRENT_USER == "STUDENT" ) {
@@ -155,7 +137,7 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
 
-
+    // decoding base 64 image
     private Bitmap base64ToBitmap(String b64) {
         byte[] imageAsBytes = Base64.decode(b64.getBytes(), Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
