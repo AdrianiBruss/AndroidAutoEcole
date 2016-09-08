@@ -89,7 +89,7 @@ public class StudentActivity extends SideMenuActivity {
                 new Response.Listener<JSONArray>()
                 {
                     @Override
-                    public ArrayList onResponse(JSONArray response)
+                    public void onResponse(JSONArray response)
                     {
                         lessons = new ArrayList();
                         int i = 0;
@@ -130,7 +130,6 @@ public class StudentActivity extends SideMenuActivity {
                         //setup TapBar
                         setupViewPager(viewPager);
                         tabLayout.setupWithViewPager(viewPager);
-                        return null;
                     }
                 },
                 new Response.ErrorListener()

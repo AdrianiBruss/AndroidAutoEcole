@@ -79,7 +79,7 @@ public class StudentHomeActivity extends SideMenuActivity {
                 new Response.Listener<JSONArray>()
                 {
                     @Override
-                    public ArrayList onResponse(JSONArray response)
+                    public void onResponse(JSONArray response)
                     {
                         int i = 0;
                         lessons = new ArrayList<>();
@@ -130,7 +130,6 @@ public class StudentHomeActivity extends SideMenuActivity {
                             });
                         }
 
-                        return null;
                     }
                 },
                 new Response.ErrorListener()
